@@ -1,0 +1,10 @@
+{
+    "recommendations": [
+        "aaron-bond.better-comments",
+        "naumovs.color-highlight",
+        "DavidAnson.vscode-markdownlint",
+        "esbenp.prettier-vscode",
+        "arcanis.vscode-zipfs",
+        "dbaeumer.vscode-eslint"
+    ]
+}

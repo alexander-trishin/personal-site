@@ -1,0 +1,23 @@
+{
+    "extends": ["next/core-web-vitals", "prettier"],
+    "rules": {
+        "import/order": [
+            "error",
+            {
+                "groups": [
+                    "type",
+                    "builtin",
+                    "external",
+                    "internal",
+                    ["unknown", "parent", "sibling", "index", "object"]
+                ],
+                "pathGroups": [{ "pattern": "src/**", "group": "internal" }],
+                "newlines-between": "always",
+                "alphabetize": {
+                    "order": "asc",
+                    "caseInsensitive": true
+                }
+            }
+        ]
+    }
+}

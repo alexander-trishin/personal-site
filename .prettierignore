@@ -1,0 +1,7 @@
+.yarn
+.husky
+.next
+
+coverage
+
+.pnp.*
