@@ -9,9 +9,16 @@
                     "builtin",
                     "external",
                     "internal",
-                    ["unknown", "parent", "sibling", "index", "object"]
+                    "unknown",
+                    ["parent", "sibling", "index", "object"]
                 ],
-                "pathGroups": [{ "pattern": "src/**", "group": "internal" }],
+                "pathGroups": [
+                    { "pattern": "pages/**", "group": "unknown" },
+                    {
+                        "pattern": "styles/**",
+                        "group": "unknown"
+                    }
+                ],
                 "newlines-between": "always",
                 "alphabetize": {
                     "order": "asc",

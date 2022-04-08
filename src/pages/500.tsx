@@ -1,13 +1,14 @@
 import { Button, Container, Group, Text, Title } from '@mantine/core';
 import { useRouter } from 'next/router';
+
 import useStyles from 'styles/ErrorPage';
 
-const InternalServerError = () => {
+const InternalServerErrorPage = () => {
     const router = useRouter();
     const { classes } = useStyles();
 
     return (
-        <Container className={classes.root}>
+        <Container className={classes.root} data-test-id="InternalServerErrorPage">
             <div className={classes.label}>500</div>
             <Title className={classes.title}>Something bad just happened...</Title>
             <Text color="dimmed" size="lg" align="center" className={classes.description}>
@@ -23,4 +24,4 @@ const InternalServerError = () => {
     );
 };
 
-export default InternalServerError;
+export default InternalServerErrorPage;

@@ -20,9 +20,11 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: "yarn" # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#caching-packages-dependencies
-      - name: Restore packages
-        run: yarn
+      - name: Install dependencies
+        run: |
+          yarn
+          yarn exec playwright install --with-deps
       - name: Run linter
         run: yarn lint
       - name: Run tests
-        run: yarn test --coverage
+        run: yarn test

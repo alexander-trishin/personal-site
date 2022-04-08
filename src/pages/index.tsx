@@ -1,9 +1,10 @@
 import type { NextPage } from 'next';
 
 import { useEffect, useState } from 'react';
+
 import useStyles from 'styles/HomePage';
 
-const Home: NextPage = () => {
+const HomePage: NextPage = () => {
     const { classes } = useStyles();
 
     const [days, setDays] = useState('00');
@@ -31,7 +32,7 @@ const Home: NextPage = () => {
     }, []);
 
     return (
-        <div className={classes.root}>
+        <div className={classes.root} data-test-id="HomePage">
             <div className={classes.label}>Coming Soon</div>
             <div className={classes.countdown}>
                 <div className={classes.indicator}>
@@ -55,4 +56,4 @@ const Home: NextPage = () => {
     );
 };
 
-export default Home;
+export default HomePage;

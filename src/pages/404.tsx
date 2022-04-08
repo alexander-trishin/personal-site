@@ -1,12 +1,13 @@
 import { Button, Container, Group, Text, Title } from '@mantine/core';
 import Link from 'next/link';
+
 import useStyles from 'styles/ErrorPage';
 
-const NotFound = () => {
+const NotFoundPage = () => {
     const { classes } = useStyles();
 
     return (
-        <Container className={classes.root}>
+        <Container className={classes.root} data-test-id="NotFoundPage">
             <div className={classes.label}>404</div>
             <Title className={classes.title}>You have found a secret place.</Title>
             <Text color="dimmed" size="lg" align="center" className={classes.description}>
@@ -15,7 +16,7 @@ const NotFound = () => {
             </Text>
             <Group position="center">
                 <Link href="/" passHref>
-                    <Button component="a" variant="subtle" size="md">
+                    <Button component="a" variant="subtle" size="md" data-test-id="go-home">
                         Take me back to home page
                     </Button>
                 </Link>
@@ -24,4 +25,4 @@ const NotFound = () => {
     );
 };
 
-export default NotFound;
+export default NotFoundPage;

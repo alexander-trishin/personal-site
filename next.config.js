@@ -1,12 +1,20 @@
-/** @type {import('next').NextConfig} */
+const { PHASE_DEVELOPMENT_SERVER } = require('next/constants');
 
-const nextConfig = {
-    compiler: {
-        reactRemoveProperties: true,
-        removeConsole: true
-    },
-    reactStrictMode: true,
-    swcMinify: true
+module.exports = (phase, { defaultConfig }) => {
+    const isDev = phase === PHASE_DEVELOPMENT_SERVER;
+
+    /**
+     * @type {import('next').NextConfig}
+     */
+    const nextConfig = {
+        ...defaultConfig,
+        compiler: {
+            ...defaultConfig.compiler,
+            reactRemoveProperties: !isDev,
+            removeConsole: !isDev
+        },
+        reactStrictMode: true,
+        swcMinify: true
+    };
+    return nextConfig;
 };
-
-module.exports = nextConfig;
