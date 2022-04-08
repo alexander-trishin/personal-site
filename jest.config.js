@@ -5,7 +5,7 @@ const createJestConfig = nextJest({
 });
 
 const customJestConfig = {
-    collectCoverageFrom: ['src/**/*.{ts,tsx}', '!src/pages/_app.tsx'],
+    collectCoverageFrom: ['src/**/*.{ts,tsx}', '!src/pages/_app.tsx', '!src/pages/_document.tsx'],
     moduleDirectories: ['node_modules', '<rootDir>/'],
     testEnvironment: 'jest-environment-jsdom'
 };
