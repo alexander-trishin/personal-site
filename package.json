@@ -11,7 +11,7 @@
         "db:reset": "yarn env -- yarn pnpify prisma migrate reset",
         "build": "yarn db:generate && next build",
         "start": "next start",
-        "lint": "next lint",
+        "lint": "yarn tsc && next lint",
         "test": "playwright test",
         "prepare": "husky install"
     },

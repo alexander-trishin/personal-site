@@ -20,6 +20,12 @@ node_modules
 # production
 /build
 
+# development
+/certificates
+
+# database
+/src/database/client/generated
+
 # misc
 .DS_Store
 *.pem
