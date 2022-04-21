@@ -9,7 +9,7 @@
         "dev:https": "cross-env NODE_EXTRA_CA_CERTS=\"$(mkcert -CAROOT)/rootCA.pem\" ts-node scripts/https-server.ts",
         "db:generate": "yarn env -- yarn pnpify prisma generate",
         "db:reset": "yarn env -- yarn pnpify prisma migrate reset",
-        "build": "yarn db:generate && next build",
+        "build": "next build",
         "start": "next start",
         "lint": "yarn tsc && next lint",
         "test": "playwright test",
