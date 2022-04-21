@@ -1,10 +1,21 @@
-import type { AppProps } from 'next/app';
+import type { AppProps as NextAppProps } from 'next/app';
 
 import { MantineProvider } from '@mantine/core';
+import { NotificationsProvider } from '@mantine/notifications';
+import { AbstractIntlMessages, NextIntlProvider } from 'next-intl';
 import Head from 'next/head';
+
+interface PageProps {
+    messages?: AbstractIntlMessages;
+}
+
+interface AppProps extends Omit<NextAppProps, 'pageProps'> {
+    pageProps: PageProps;
+}
 
 const App = (props: AppProps) => {
     const { Component, pageProps } = props;
+    const { messages } = pageProps;
 
     return (
         <>
@@ -16,9 +27,13 @@ const App = (props: AppProps) => {
                 />
             </Head>
 
-            <MantineProvider withGlobalStyles withNormalizeCSS>
-                <Component {...pageProps} />
-            </MantineProvider>
+            <NextIntlProvider messages={messages}>
+                <MantineProvider withNormalizeCSS withGlobalStyles>
+                    <NotificationsProvider>
+                        <Component {...(pageProps as NextAppProps['pageProps'])} />
+                    </NotificationsProvider>
+                </MantineProvider>
+            </NextIntlProvider>
         </>
     );
 };

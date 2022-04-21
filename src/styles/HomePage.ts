@@ -20,7 +20,7 @@ const useStyles = createStyles(theme => ({
         fontSize: 60,
         lineHeight: 1,
         marginBottom: theme.spacing.xl,
-        color: theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[8],
+        color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.colors.gray[8],
         textTransform: 'uppercase',
 
         [theme.fn.smallerThan('sm')]: {

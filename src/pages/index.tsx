@@ -1,10 +1,14 @@
-import type { NextPage } from 'next';
+import type { GetStaticProps, NextPage } from 'next';
 
+import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 
+import { getMessages } from 'i18n';
 import useStyles from 'styles/HomePage';
 
-const HomePage: NextPage = () => {
+const IndexPage: NextPage = () => {
+    const t = useTranslations('shared');
+
     const { classes } = useStyles();
 
     const [days, setDays] = useState('00');
@@ -32,28 +36,36 @@ const HomePage: NextPage = () => {
     }, []);
 
     return (
-        <div className={classes.root} data-test-id="HomePage">
-            <div className={classes.label}>Coming Soon</div>
-            <div className={classes.countdown}>
-                <div className={classes.indicator}>
-                    <div className={classes.number}>{days}</div>
-                    <div className={classes.text}>Days</div>
+            <main className={classes.root} data-test-id="HomePage">
+                <div className={classes.label}>{t('coming-soon')}</div>
+                <div className={classes.countdown}>
+                    <div className={classes.indicator}>
+                        <div className={classes.number}>{days}</div>
+                        <div className={classes.text}>{t('days')}</div>
+                    </div>
+                    <div className={classes.indicator}>
+                        <div className={classes.number}>{hours}</div>
+                        <div className={classes.text}>{t('hours')}</div>
+                    </div>
+                    <div className={classes.indicator}>
+                        <div className={classes.number}>{minutes}</div>
+                        <div className={classes.text}>{t('minutes')}</div>
+                    </div>
+                    <div className={classes.indicator}>
+                        <div className={classes.number}>{seconds}</div>
+                        <div className={classes.text}>{t('seconds')}</div>
+                    </div>
                 </div>
-                <div className={classes.indicator}>
-                    <div className={classes.number}>{hours}</div>
-                    <div className={classes.text}>Hours</div>
-                </div>
-                <div className={classes.indicator}>
-                    <div className={classes.number}>{minutes}</div>
-                    <div className={classes.text}>Minutes</div>
-                </div>
-                <div className={classes.indicator}>
-                    <div className={classes.number}>{seconds}</div>
-                    <div className={classes.text}>Seconds</div>
-                </div>
-            </div>
-        </div>
+            </main>
     );
 };
 
-export default HomePage;
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+    return {
+        props: {
+            messages: await getMessages(locale, ['shared'])
+        }
+    };
+};
+
+export default IndexPage;

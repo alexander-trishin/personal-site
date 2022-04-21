@@ -1,0 +1,20 @@
+{
+    "internal-server-error": {
+        "description": "Our servers could not handle your request. Don't worry, our development team was already notified. Try refreshing the page.",
+        "refresh": "Refresh",
+        "title": "Something bad just happened..."
+    },
+    "not-found": {
+        "description": "Unfortunately, this is only a 404 page. You may have mistyped the address, or the page has been moved to another URL.",
+        "go-home": "Take me back to home page",
+        "title": "You have found a secret place."
+    },
+    "shared": {
+        "coming-soon": "Coming Soon",
+        "days": "Days",
+        "home-page": "Home page",
+        "hours": "Hours",
+        "minutes": "Minutes",
+        "seconds": "Seconds"
+    }
+}
