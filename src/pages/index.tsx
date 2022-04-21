@@ -3,6 +3,7 @@ import type { GetStaticProps, NextPage } from 'next';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 
+import { Header } from 'components';
 import { getMessages } from 'i18n';
 import useStyles from 'styles/HomePage';
 
@@ -36,6 +37,8 @@ const IndexPage: NextPage = () => {
     }, []);
 
     return (
+        <>
+            <Header />
             <main className={classes.root} data-test-id="HomePage">
                 <div className={classes.label}>{t('coming-soon')}</div>
                 <div className={classes.countdown}>
@@ -57,6 +60,7 @@ const IndexPage: NextPage = () => {
                     </div>
                 </div>
             </main>
+        </>
     );
 };
 

@@ -1,12 +1,14 @@
 import { createStyles } from '@mantine/core';
 
+import { HeaderHeight } from 'common/constants';
+
 const useStyles = createStyles(theme => ({
     root: {
         position: 'fixed',
         left: 0,
-        top: 0,
+        top: HeaderHeight,
         width: '100%',
-        height: '100%',
+        height: `calc(100% - ${HeaderHeight}px)`,
 
         display: 'flex',
         flexDirection: 'column',
