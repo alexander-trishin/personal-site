@@ -16,6 +16,20 @@ module.exports = phase => {
             defaultLocale: 'ru-ru'
         },
         reactStrictMode: true,
+        rewrites: async () => {
+            if (!isDev) {
+                return {
+                    beforeFiles: [
+                        {
+                            source: '/dev',
+                            destination: '/404'
+                        }
+                    ]
+                };
+            }
+
+            return {};
+        },
         swcMinify: true
     };
     return nextConfig;
