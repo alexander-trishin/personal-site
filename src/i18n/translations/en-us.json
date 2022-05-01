@@ -1,13 +1,19 @@
 {
     "internal-server-error": {
+        "title": "Something bad just happened...",
         "description": "Our servers could not handle your request. Don't worry, our development team was already notified. Try refreshing the page.",
-        "refresh": "Refresh",
-        "title": "Something bad just happened..."
+        "refresh": "Refresh"
     },
     "not-found": {
+        "title": "You have found a secret place.",
         "description": "Unfortunately, this is only a 404 page. You may have mistyped the address, or the page has been moved to another URL.",
-        "go-home": "Take me back to home page",
-        "title": "You have found a secret place."
+        "go-home": "Take me back to home page"
+    },
+    "password-field": {
+        "min": "Includes at least {limit} character{limit, plural, =1 {} other {s}}",
+        "number": "Includes a number",
+        "lowercase": "Includes a lowercase letter",
+        "uppercase": "Includes an uppercase letter"
     },
     "shared": {
         "coming-soon": "Coming Soon",
