@@ -1,10 +1,12 @@
 {
     "internal-server-error": {
+        "title-head": "500 Internal Server Error",
         "title": "Something bad just happened...",
         "description": "Our servers could not handle your request. Don't worry, our development team was already notified. Try refreshing the page.",
         "refresh": "Refresh"
     },
     "not-found": {
+        "title-head": "404 Not Found",
         "title": "You have found a secret place.",
         "description": "Unfortunately, this is only a 404 page. You may have mistyped the address, or the page has been moved to another URL.",
         "go-home": "Take me back to home page"
@@ -16,6 +18,10 @@
         "uppercase": "Includes an uppercase letter"
     },
     "shared": {
+        "author": {
+            "first-name": "Alexander",
+            "last-name": "Trishin"
+        },
         "coming-soon": "Coming Soon",
         "days": "Days",
         "home-page": "Home page",

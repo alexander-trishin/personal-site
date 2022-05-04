@@ -1,7 +1,12 @@
-const { PHASE_DEVELOPMENT_SERVER } = require('next/constants');
+const { PHASE_PRODUCTION_BUILD } = require('next/constants');
+
+/**
+ * @type {{key: string; value: string;}[]}
+ */
+const securityHeaders = [{ key: 'X-DNS-Prefetch-Control', value: 'on' }];
 
 module.exports = phase => {
-    const isDev = phase === PHASE_DEVELOPMENT_SERVER;
+    const isDev = phase !== PHASE_PRODUCTION_BUILD;
 
     /**
      * @type {import('next').NextConfig}
@@ -11,26 +16,23 @@ module.exports = phase => {
             reactRemoveProperties: !isDev,
             removeConsole: isDev ? false : { exclude: ['error'] }
         },
+        async headers() {
+            if (isDev) return [];
+
+            return [
+                {
+                    source: '/:path*',
+                    headers: securityHeaders
+                }
+            ];
+        },
         i18n: {
             locales: ['ru-ru', 'en-us'],
-            defaultLocale: 'ru-ru'
+            defaultLocale: isDev ? 'en-us' : 'ru-ru'
         },
         reactStrictMode: true,
-        rewrites: async () => {
-            if (!isDev) {
-                return {
-                    beforeFiles: [
-                        {
-                            source: '/dev',
-                            destination: '/404'
-                        }
-                    ]
-                };
-            }
-
-            return {};
-        },
         swcMinify: true
     };
+
     return nextConfig;
 };

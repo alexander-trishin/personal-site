@@ -1,13 +1,13 @@
-import type { GetStaticProps, NextPage } from 'next';
+import type { GetStaticProps } from 'next';
 
 import { useTranslations } from 'next-intl';
+import Head from 'next/head';
 import { useEffect, useState } from 'react';
 
-import { Header } from 'components';
 import { getMessages } from 'i18n';
 import useStyles from 'styles/HomePage';
 
-const IndexPage: NextPage = () => {
+const IndexPage = () => {
     const t = useTranslations('shared');
 
     const { classes } = useStyles();
@@ -38,7 +38,11 @@ const IndexPage: NextPage = () => {
 
     return (
         <>
-            <Header />
+            <Head>
+                <title>
+                    {t('author.first-name')} {t('author.last-name')}
+                </title>
+            </Head>
             <main className={classes.root} data-test-id="HomePage">
                 <div className={classes.label}>{t('coming-soon')}</div>
                 <div className={classes.countdown}>
