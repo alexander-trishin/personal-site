@@ -8,5 +8,86 @@ datasource db {
 generator client {
     provider        = "prisma-client-js"
     previewFeatures = ["referentialIntegrity"]
-    output          = "../src/database/client/generated"
+    output          = "../src/server/persistence/codegen/client"
+}
+
+model User {
+    id                 Int      @id @default(autoincrement())
+    email              String
+    emailConfirmed     Boolean  @default(false) @map("email_confirmed")
+    passwordHash       String?  @map("password_hash")
+    username           String?
+    avatarUrl          String?  @map("avatar_url")
+    normalizedEmail    String   @unique @map("normalized_email")
+    normalizedUsername String?  @map("normalized_username")
+    createdAt          DateTime @default(now()) @map("created_at")
+    updatedAt          DateTime @updatedAt @map("updated_at")
+
+    claims UserClaim[]
+    logins UserLogin[]
+    tokens UserToken[]
+    roles  UserRole[]
+}
+
+model UserClaim {
+    id         Int     @id @default(autoincrement())
+    claimType  String  @map("claim_type")
+    claimValue String? @map("claim_value")
+
+    userId Int @map("user_id")
+
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model UserLogin {
+    provider            String
+    providerKey         String @map("provider_key")
+    providerDisplayName String @map("provider_display_name")
+
+    userId Int @map("user_id")
+
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@unique([provider, providerKey])
+}
+
+model UserToken {
+    provider String
+    name     String
+    value    String
+
+    userId Int @map("user_id")
+
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@unique([userId, provider, name])
+}
+
+model UserRole {
+    userId Int @map("user_id")
+    roleId Int @map("role_id")
+
+    user User @relation(fields: [userId], references: [id])
+    role Role @relation(fields: [roleId], references: [id])
+
+    @@unique([userId, roleId])
+}
+
+model Role {
+    id             Int    @id @default(autoincrement())
+    name           String
+    normalizedName String @unique @map("normalized_name")
+
+    claims RoleClaim[]
+    users  UserRole[]
+}
+
+model RoleClaim {
+    id         Int     @id @default(autoincrement())
+    claimType  String  @map("claim_type")
+    claimValue String? @map("claim_value")
+
+    roleId Int @map("role_id")
+
+    role Role @relation(fields: [roleId], references: [id], onDelete: Cascade)
 }
