@@ -118,14 +118,14 @@
         "message": "One or more validation errors occurred",
         "errors": [
             {
-                "type": "invalid_type",
+                "code": "invalid_type",
                 "path": ["names", 1],
-                "description": "Invalid input: expected string, received number",
+                "message": "Invalid input: expected string, received number",
             },
             {
-                "type": "too_small",
+                "code": "too_small",
                 "path": ["address", "zipCode"],
-                "description": "Value should be greater than or equal to 10000",
+                "message": "Value should be greater than or equal to 10000",
             }
         ]
     }
@@ -141,9 +141,9 @@
         "message": "One or more validation errors occurred",
         "errors": [
             {
-                "type": "too_small",
+                "code": "too_small",
                 "path": ["address", "zipCode"],
-                "description": "Value should be greater than or equal to 10000",
+                "message": "Value should be greater than or equal to 10000",
             }
         ]
     }
@@ -222,9 +222,9 @@
         "message": "One or more validation errors occurred",
         "errors": [
             {
-                "type": "unrecognized_keys",
+                "code": "unrecognized_keys",
                 "path": ["address"],
-                "description": "Unrecognized key(s) in object: 'extra'",
+                "message": "Unrecognized key(s) in object: 'extra'",
             }
         ]
     }
