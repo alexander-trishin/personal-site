@@ -1,4 +1,4 @@
-type EncryptionAlgorithm = 'aes-128-gcm' | 'aes-256-gcm';
+type EncryptionAlgorithm = 'aes-128-ctr' | 'aes-256-cbc';
 type IntegrityAlgorithm = 'sha256' | 'sha512';
 type Algorithm = EncryptionAlgorithm | IntegrityAlgorithm;
 

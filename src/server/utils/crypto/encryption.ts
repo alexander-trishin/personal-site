@@ -54,7 +54,9 @@ const generateKey: GenerateKeyFunction = async (password, options) => {
         result.salt = '';
     } else {
         if (password.length < options.minPasswordLength) {
-            throw new Error(`Password is too short (required: ${options.minPasswordLength}).`);
+            throw new Error(
+                `Password is too short (${password.length}/${options.minPasswordLength}).`
+            );
         }
 
         const salt = options.salt ?? randomBytes(options.saltBytes).toString('hex');
@@ -73,7 +75,7 @@ const generateKey: GenerateKeyFunction = async (password, options) => {
     return result as GeneratedKey;
 };
 
-const encrypt: EncryptFunction = async (data, password, options) => {
+export const encrypt: EncryptFunction = async (data, password, options) => {
     const key = await generateKey(password, options);
 
     const cipher = createCipheriv(options.algorithm, key.key, key.iv);
@@ -82,15 +84,15 @@ const encrypt: EncryptFunction = async (data, password, options) => {
     return { encrypted, key };
 };
 
-const decrypt: DecryptFunction = async (data, password, options) => {
-    const key = await exports.generateKey(password, options);
+export const decrypt: DecryptFunction = async (data, password, options) => {
+    const key = await generateKey(password, options);
     const decipher = createDecipheriv(options.algorithm, key.key, key.iv);
 
     return decipher.update(data, undefined, 'utf8') + decipher.final('utf8');
 };
 
 const createHmac: HmacFunction = async (data, password, options) => {
-    const { key, salt } = await exports.generateKey(password, options);
+    const { key, salt } = await generateKey(password, options);
 
     const hmac = cryptoCreateHmac(options.algorithm, key).update(data);
     const digest = hmac.digest('base64').replace(/\+/g, '-').replace(/\//g, '_').replace(/\=/g, '');
@@ -108,7 +110,7 @@ export const seal: SealFunction = async (data, passwords) => {
 
     const { encrypted, key } = await encrypt(dataJson, passwords.encryption, encryption);
 
-    const encryptedB64 = Buffer.from(encrypted).toString('base64url');
+    const encryptedB64 = encrypted.toString('base64url');
     const ivB64 = key.iv.toString('base64url');
 
     const macBase = `${macPrefix}${divider}${key.salt}${divider}${ivB64}${divider}${encryptedB64}`;
@@ -132,7 +134,7 @@ export const unseal: UnsealFunction = async (data, passwords) => {
         throw new Error('Invalid mac prefix.');
     }
 
-    const macBase = `${macPrefix}${divider}${encryptedSalt}${divider}${encryptedB64}${divider}${encryptedB64}`;
+    const macBase = `${macPrefix}${divider}${encryptedSalt}${divider}${encryptedIvB64}${divider}${encryptedB64}`;
     const mac = await createHmac(macBase, passwords.integrity, { ...integrity, salt: macSalt });
 
     if (mac.digest !== macDigest) {
@@ -142,7 +144,11 @@ export const unseal: UnsealFunction = async (data, passwords) => {
     const encrypted = Buffer.from(encryptedB64, 'base64url');
     const iv = Buffer.from(encryptedIvB64, 'base64url');
 
-    const decrypted = await decrypt(encrypted, passwords.encryption, { ...encryption, iv });
+    const decrypted = await decrypt(encrypted, passwords.encryption, {
+        ...encryption,
+        iv,
+        salt: encryptedSalt
+    });
 
     return JSON.parse(decrypted);
 };
