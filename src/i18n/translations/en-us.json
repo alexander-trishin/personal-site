@@ -1,21 +1,33 @@
 {
+    "authentication": {
+        "providers": {
+            "github": "GitHub",
+            "discord": "Discord",
+            "vk": "VK"
+        },
+        "divider": "Or",
+        "username": "Username",
+        "email": "Email",
+        "password": "Password",
+        "login": "Log In",
+        "login-question": "Don't have an account? <button>Register</button>",
+        "register": "Register",
+        "register-question": "Already have an account? <button>Log In</button>"
+    },
     "internal-server-error": {
-        "title-head": "500 Internal Server Error",
-        "title": "Something bad just happened...",
+        "title": "500 Internal Server Error",
+        "heading": "Something bad just happened...",
         "description": "Our servers could not handle your request. Don't worry, our development team was already notified. Try refreshing the page.",
         "refresh": "Refresh"
     },
     "not-found": {
-        "title-head": "404 Not Found",
-        "title": "You have found a secret place.",
+        "title": "404 Not Found",
+        "heading": "You have found a secret place.",
         "description": "Unfortunately, this is only a 404 page. You may have mistyped the address, or the page has been moved to another URL.",
         "go-home": "Take me back to home page"
     },
-    "password-field": {
-        "min": "Includes at least {limit} character{limit, plural, =1 {} other {s}}",
-        "number": "Includes a number",
-        "lowercase": "Includes a lowercase letter",
-        "uppercase": "Includes an uppercase letter"
+    "sign-in": {
+        "title": "Sign In"
     },
     "shared": {
         "author": {
@@ -28,5 +40,14 @@
         "hours": "Hours",
         "minutes": "Minutes",
         "seconds": "Seconds"
+    },
+    "validation": {
+        "invalid": "Invalid format",
+        "required": "Required",
+        "max": "At most {limit} character{limit, plural, =1 {} other {s}}",
+        "min": "At least {limit} character{limit, plural, =1 {} other {s}}",
+        "number": "Must contain a number",
+        "lowercase": "Must contain a lowercase letter",
+        "uppercase": "Must contain an uppercase letter"
     }
 }

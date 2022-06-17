@@ -1,1 +1,1 @@
-export { getMessages } from './utils';
+export { default as getMessages } from './getMessages';

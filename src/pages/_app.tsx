@@ -1,22 +1,26 @@
-import type { GetServerSidePropsContext } from 'next';
-import type { AppProps as NextAppProps } from 'next/app';
+import type { AppContext as NextAppContext, AppProps as NextAppProps } from 'next/app';
 
 import { ColorScheme, ColorSchemeProvider, MantineProvider } from '@mantine/core';
 import { NotificationsProvider } from '@mantine/notifications';
-import { getCookie } from 'cookies-next';
 import { AbstractIntlMessages, NextIntlProvider } from 'next-intl';
 import Head from 'next/head';
+import { useMemo } from 'react';
+import { Hydrate as ReactQueryHydrate, QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 
-import { CookieNames } from 'common/cookies';
-import { HeadFavicon } from 'components';
-import { useCookieColorScheme } from 'utils/hooks';
+import { CookieName } from 'common/constants';
+import { mantineDefaultProps, mantineTheme } from 'common/theme';
+import { Favicon } from 'components';
+import { useColorScheme } from 'hooks';
+import { getCookie } from 'utils/cookie';
 
 interface PageProps {
+    dehydratedState?: unknown;
     messages?: AbstractIntlMessages;
 }
 
 interface AppProps extends Omit<NextAppProps, 'pageProps'> {
-    colorScheme?: ColorScheme;
+    colorScheme: ColorScheme;
     pageProps: PageProps;
 }
 
@@ -24,10 +28,9 @@ const App = (props: AppProps) => {
     const { Component, pageProps, colorScheme: colorSchemeFromProps } = props;
     const { messages } = pageProps;
 
-    const [colorScheme, setColorScheme] = useCookieColorScheme(
-        CookieNames.ColorScheme,
-        colorSchemeFromProps
-    );
+    const [colorScheme, setColorScheme] = useColorScheme(colorSchemeFromProps);
+
+    const queryClient = useMemo(() => new QueryClient(), []);
 
     return (
         <>
@@ -36,14 +39,25 @@ const App = (props: AppProps) => {
                     name="viewport"
                     content="minimum-scale=1, initial-scale=1, width=device-width"
                 />
-                <HeadFavicon colorScheme={colorScheme} />
+                <meta name="color-scheme" content="dark light" />
+                <Favicon colorScheme={colorScheme} />
             </Head>
 
             <NextIntlProvider messages={messages}>
                 <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={setColorScheme}>
-                    <MantineProvider theme={{ colorScheme }} withNormalizeCSS withGlobalStyles>
+                    <MantineProvider
+                        defaultProps={mantineDefaultProps}
+                        theme={{ ...mantineTheme, colorScheme }}
+                        withNormalizeCSS
+                        withGlobalStyles
+                    >
                         <NotificationsProvider>
-                            <Component {...(pageProps as NextAppProps['pageProps'])} />
+                            <QueryClientProvider client={queryClient}>
+                                <ReactQueryDevtools initialIsOpen={false} />
+                                <ReactQueryHydrate state={pageProps.dehydratedState}>
+                                    <Component {...(pageProps as NextAppProps['pageProps'])} />
+                                </ReactQueryHydrate>
+                            </QueryClientProvider>
                         </NotificationsProvider>
                     </MantineProvider>
                 </ColorSchemeProvider>
@@ -52,9 +66,9 @@ const App = (props: AppProps) => {
     );
 };
 
-App.getInitialProps = async (context: GetServerSidePropsContext) => {
+App.getInitialProps = async (context: NextAppContext) => {
     return {
-        colorScheme: getCookie(CookieNames.ColorScheme, context)
+        colorScheme: getCookie<ColorScheme>(CookieName.ColorScheme, context.ctx) || 'light'
     };
 };
 

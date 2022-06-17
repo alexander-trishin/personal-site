@@ -4,8 +4,8 @@ import { useTranslations } from 'next-intl';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
+import useStyles from 'assets/styles/ErrorPage';
 import { getMessages } from 'i18n';
-import useStyles from 'styles/ErrorPage';
 
 const InternalServerErrorPage = () => {
     const router = useRouter();
@@ -17,11 +17,11 @@ const InternalServerErrorPage = () => {
     return (
         <>
             <Head>
-                <title>{t('title-head')}</title>
+                <title>{t('title')}</title>
             </Head>
-            <Container className={classes.root} data-test-id="InternalServerErrorPage">
+            <Container className={classes.root}>
                 <div className={classes.label}>500</div>
-                <Title className={classes.title}>{t('title')}</Title>
+                <Title className={classes.title}>{t('heading')}</Title>
                 <Text color="dimmed" size="lg" align="center" className={classes.description}>
                     {t('description')}
                 </Text>

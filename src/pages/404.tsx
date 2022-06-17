@@ -5,8 +5,8 @@ import { useTranslations } from 'next-intl';
 import Head from 'next/head';
 import Link from 'next/link';
 
+import useStyles from 'assets/styles/ErrorPage';
 import { getMessages } from 'i18n';
-import useStyles from 'styles/ErrorPage';
 
 const NotFoundPage = () => {
     const t = useTranslations('not-found');
@@ -16,17 +16,17 @@ const NotFoundPage = () => {
     return (
         <>
             <Head>
-                <title>{t('title-head')}</title>
+                <title>{t('title')}</title>
             </Head>
-            <Container className={classes.root} data-test-id="NotFoundPage">
+            <Container className={classes.root}>
                 <div className={classes.label}>404</div>
-                <Title className={classes.title}>{t('title')}</Title>
+                <Title className={classes.title}>{t('heading')}</Title>
                 <Text color="dimmed" size="lg" align="center" className={classes.description}>
                     {t('description')}
                 </Text>
                 <Group position="center">
                     <Link href="/" passHref>
-                        <Button component="a" variant="subtle" size="md" data-test-id="go-home">
+                        <Button component="a" variant="subtle" size="md">
                             {t('go-home')}
                         </Button>
                     </Link>

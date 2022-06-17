@@ -1,11 +1,14 @@
 import type { GetStaticProps } from 'next';
 
+import { Box } from '@mantine/core';
 import { useTranslations } from 'next-intl';
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
 
+import useStyles from 'assets/styles/HomePage';
+import Footer from 'components/Home/Footer';
+import Header from 'components/Home/Header';
 import { getMessages } from 'i18n';
-import useStyles from 'styles/HomePage';
 
 const IndexPage = () => {
     const t = useTranslations('shared');
@@ -37,34 +40,39 @@ const IndexPage = () => {
     }, []);
 
     return (
-        <>
+        <Box className={classes.root}>
             <Head>
                 <title>
                     {t('author.first-name')} {t('author.last-name')}
                 </title>
             </Head>
-            <main className={classes.root} data-test-id="HomePage">
-                <div className={classes.label}>{t('coming-soon')}</div>
-                <div className={classes.countdown}>
-                    <div className={classes.indicator}>
-                        <div className={classes.number}>{days}</div>
-                        <div className={classes.text}>{t('days')}</div>
-                    </div>
-                    <div className={classes.indicator}>
-                        <div className={classes.number}>{hours}</div>
-                        <div className={classes.text}>{t('hours')}</div>
-                    </div>
-                    <div className={classes.indicator}>
-                        <div className={classes.number}>{minutes}</div>
-                        <div className={classes.text}>{t('minutes')}</div>
-                    </div>
-                    <div className={classes.indicator}>
-                        <div className={classes.number}>{seconds}</div>
-                        <div className={classes.text}>{t('seconds')}</div>
-                    </div>
-                </div>
-            </main>
-        </>
+
+            <Header />
+
+            <Box component="main">
+                <Box className={classes.label}>{t('coming-soon')}</Box>
+                <Box className={classes.countdown}>
+                    <Box className={classes.indicator}>
+                        <Box className={classes.number}>{days}</Box>
+                        <Box className={classes.text}>{t('days')}</Box>
+                    </Box>
+                    <Box className={classes.indicator}>
+                        <Box className={classes.number}>{hours}</Box>
+                        <Box className={classes.text}>{t('hours')}</Box>
+                    </Box>
+                    <Box className={classes.indicator}>
+                        <Box className={classes.number}>{minutes}</Box>
+                        <Box className={classes.text}>{t('minutes')}</Box>
+                    </Box>
+                    <Box className={classes.indicator}>
+                        <Box className={classes.number}>{seconds}</Box>
+                        <Box className={classes.text}>{t('seconds')}</Box>
+                    </Box>
+                </Box>
+            </Box>
+
+            <Footer />
+        </Box>
     );
 };
 

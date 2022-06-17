@@ -1,22 +1,22 @@
 import { createStyles } from '@mantine/core';
 
 const useStyles = createStyles(theme => ({
-    logo: {
+    button: {
         ...theme.fn.focusStyles(),
-        width: 34,
-        height: 34,
-        borderRadius: theme.radius.md,
+
+        height: theme.spacing.md * 2,
+
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        color: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
-        backgroundColor: theme.colorScheme === 'dark' ? theme.white : theme.colors.dark[7],
+
+        borderRadius: theme.radius.md,
         textDecoration: 'none',
         userSelect: 'none'
     },
 
-    image: {
-        height: 30
+    svg: {
+        height: theme.spacing.md * 2
     }
 }));
 

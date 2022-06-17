@@ -4,11 +4,14 @@ import { UnstyledButton } from '@mantine/core';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 
-import useStyles from './Logo.styles';
-import LogoImage from './LogoImage';
+import LogoSvg from 'assets/svg/Logo';
 
-const Logo = (props: PropsWithoutRef<AnchorHTMLAttributes<HTMLAnchorElement>>) => {
-    const { className, title, ...restProps } = props;
+import useStyles from './Logo.styles';
+
+type LogoProps = Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'title'>;
+
+const Logo = (props: PropsWithoutRef<LogoProps>) => {
+    const { className, ...rest } = props;
 
     const t = useTranslations('shared');
     const { classes, cx } = useStyles();
@@ -16,12 +19,12 @@ const Logo = (props: PropsWithoutRef<AnchorHTMLAttributes<HTMLAnchorElement>>) =
     return (
         <Link href="/" passHref>
             <UnstyledButton<'a'>
-                {...restProps}
+                {...rest}
                 component="a"
-                className={cx(classes.logo, className)}
+                className={cx(classes.button, className)}
                 title={t('home-page')}
             >
-                <LogoImage className={classes.image} />
+                <LogoSvg className={classes.svg} />
             </UnstyledButton>
         </Link>
     );
