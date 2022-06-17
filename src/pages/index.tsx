@@ -42,9 +42,7 @@ const IndexPage = () => {
     return (
         <Box className={classes.root}>
             <Head>
-                <title>
-                    {t('author.first-name')} {t('author.last-name')}
-                </title>
+                <title>{`${t('author.first-name')} ${t('author.last-name')}`}</title>
             </Head>
 
             <Header />

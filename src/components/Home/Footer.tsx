@@ -1,4 +1,5 @@
 import { Box, BoxProps, Container, createStyles, Text } from '@mantine/core';
+import { useTranslations } from 'next-intl';
 import { PropsWithoutRef } from 'react';
 
 import { ThemeOther } from 'common/theme';
@@ -83,6 +84,8 @@ const useFooterStyles = createStyles(theme => {
 const Footer = (props: PropsWithoutRef<FooterProps>) => {
     const { classes } = useFooterStyles();
 
+    const t = useTranslations('shared');
+
     return (
         <Box {...props} component="footer">
             <Container className={classes.container}>
@@ -91,13 +94,13 @@ const Footer = (props: PropsWithoutRef<FooterProps>) => {
                 </Box>
                 <Box className={classes.copyright}>
                     <Text component="span" inherit>
-                        © Alexander Trishin 2022
+                        &copy; {t('author.first-name')} {t('author.last-name')} 2022
                     </Text>
                     <Text component="span" className={classes.separator} inherit>
                         |
                     </Text>
                     <Text component="span" inherit>
-                        All rights reserved
+                        {t('rights-reserved')}
                     </Text>
                 </Box>
             </Container>

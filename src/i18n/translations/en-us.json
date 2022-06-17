@@ -34,6 +34,11 @@
             "first-name": "Alexander",
             "last-name": "Trishin"
         },
+        "rights-reserved": "All rights reserved",
+        "theme": {
+            "dark-mode": "Dark mode",
+            "light-mode": "Light mode"
+        },
         "coming-soon": "Coming Soon",
         "days": "Days",
         "home-page": "Home page",

@@ -34,6 +34,11 @@
             "first-name": "Александр",
             "last-name": "Тришин"
         },
+        "rights-reserved": "Все права защищены",
+        "theme": {
+            "dark-mode": "Тёмная тема",
+            "light-mode": "Светлая тема"
+        },
         "coming-soon": "Скоро открытие",
         "days": "Дни",
         "home-page": "Главная страница",

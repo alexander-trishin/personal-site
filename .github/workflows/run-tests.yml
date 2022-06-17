@@ -11,7 +11,13 @@ env:
 
 jobs:
   run-tests:
-    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+
+    name: ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
 
     steps:
       - uses: actions/checkout@v3
@@ -21,7 +27,9 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           cache: "yarn" # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#caching-packages-dependencies
       - name: Install dependencies
-        run: yarn
+        run: |
+          yarn --immutable
+          yarn playwright install --with-deps
       - name: Run linter
         run: yarn lint
       - name: Run build

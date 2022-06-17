@@ -150,7 +150,9 @@ const Header = (props: PropsWithoutRef<HeaderProps>) => {
                             </Group>
                         )}
 
-                        <ColorSchemeToggle variant="default" size={30} ml="xl" />
+                        <Box ml="xl">
+                            <ColorSchemeToggle variant="default" size={30} />
+                        </Box>
                     </Group>
                 </Group>
             </Container>

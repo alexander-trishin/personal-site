@@ -28,7 +28,7 @@
     Pagination-Page: 5
     Pagination-Limit: 20
     Content-Type: application/json
-    
+
     [
         {
             "id": 1,
@@ -49,7 +49,7 @@
     HTTP/1.1  201
     Location: /items/2
     Content-Type: application/json
- 
+
     {
         "id": 2,
         "name": "coat",
@@ -64,7 +64,7 @@
 ```javascript
     HTTP/1.1  200
     Content-Type: application/json
- 
+
     {
         "id": 1,
         "name": "shirt",
@@ -91,7 +91,7 @@
 ```javascript
     HTTP/1.1  404
     Content-Type: application/json
- 
+
     {
         "message": "The item does not exist"
     }
@@ -102,18 +102,18 @@
 ```javascript
     HTTP/1.1  404
     Content-Type: application/json
- 
+
     {
         "message": "The item does not exist"
     }
 ```
 
-3 - POST -  HTTP Response Code: **400**
+3 - POST - HTTP Response Code: **400**
 
 ```javascript
     HTTP/1.1  400
     Content-Type: application/json
-    
+
     {
         "message": "One or more validation errors occurred",
         "errors": [
@@ -131,12 +131,12 @@
     }
 ```
 
-4 - PUT -  HTTP Response Code: **400/404**
+4 - PUT - HTTP Response Code: **400/404**
 
 ```javascript
     HTTP/1.1  400
     Content-Type: application/json
-    
+
     {
         "message": "One or more validation errors occurred",
         "errors": [
@@ -147,11 +147,11 @@
             }
         ]
     }
-    
-    
+
+
     HTTP/1.1  404
     Content-Type: application/json
- 
+
     {
         "message": "The item does not exist"
     }
@@ -162,7 +162,7 @@
 ```javascript
     HTTP/1.1  401
     Content-Type: application/json
- 
+
     {
         "message": "Authentication credentials were missing or incorrect"
     }
@@ -173,7 +173,7 @@
 ```javascript
     HTTP/1.1  403
     Content-Type: application/json
- 
+
     {
         "message": "The request is understood, but it has been refused or access is not allowed"
     }
@@ -184,7 +184,7 @@
 ```javascript
     HTTP/1.1  409
     Content-Type: application/json
- 
+
     {
         "message": "Any message which should help the user to resolve the conflict"
     }
@@ -195,7 +195,7 @@
 ```javascript
     HTTP/1.1  429
     Content-Type: application/json
- 
+
     {
         "message": "The request cannot be served due to the rate limit having been exhausted for the resource"
     }
@@ -206,7 +206,7 @@
 ```javascript
     HTTP/1.1  500
     Content-Type: application/json
- 
+
     {
         "message": "Something went wrong..."
     }
@@ -217,7 +217,7 @@
 ```javascript
     HTTP/1.1  400
     Content-Type: application/json
-    
+
     {
         "message": "One or more validation errors occurred",
         "errors": [
