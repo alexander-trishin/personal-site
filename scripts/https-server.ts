@@ -2,6 +2,7 @@ import { createServer } from 'https';
 import { parse } from 'url';
 
 import next from 'next';
+import color from 'picocolors';
 
 import { dev, hostname, port } from './environment';
 import httpsOptions from './https-options';
@@ -9,12 +10,20 @@ import httpsOptions from './https-options';
 const app = next({ dev, hostname, port });
 const handle = app.getRequestHandler();
 
-app.prepare().then(() => {
-    createServer(httpsOptions, async (request, response) => {
-        const parsedUrl = parse(request.url!, true);
+(async () => {
+    try {
+        await app.prepare();
 
-        await handle(request, response, parsedUrl);
-    }).listen(port, () => {
-        console.log(`> Ready on https://${hostname}:${port}`);
-    });
-});
+        const server = createServer(httpsOptions, async (request, response) => {
+            const parsedUrl = parse(request.url!, true);
+
+            await handle(request, response, parsedUrl);
+        });
+
+        server.listen(port, () => {
+            console.log(color.green(`> Ready on https://${hostname}:${port}`));
+        });
+    } catch (error) {
+        console.log(color.red(JSON.stringify(error, null, 4)));
+    }
+})();

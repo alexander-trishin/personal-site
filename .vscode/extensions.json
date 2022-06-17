@@ -5,6 +5,7 @@
         "DavidAnson.vscode-markdownlint",
         "esbenp.prettier-vscode",
         "arcanis.vscode-zipfs",
-        "dbaeumer.vscode-eslint"
+        "dbaeumer.vscode-eslint",
+        "ms-playwright.playwright"
     ]
 }

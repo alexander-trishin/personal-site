@@ -14,7 +14,7 @@ module.exports = phase => {
     const nextConfig = {
         compiler: {
             reactRemoveProperties: !isDev,
-            removeConsole: isDev ? false : { exclude: ['error'] }
+            removeConsole: !isDev
         },
         async headers() {
             if (isDev) return [];

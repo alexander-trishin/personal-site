@@ -18,6 +18,9 @@ const pathGroups = fs.readdirSync(srcFolder, { withFileTypes: true }).reduce((re
     return result;
 }, []);
 
+/**
+ * @type {import('@types/eslint').Linter.Config}
+ */
 module.exports = {
     extends: ['next/core-web-vitals', 'prettier'],
     rules: {
@@ -40,5 +43,12 @@ module.exports = {
                 }
             }
         ]
-    }
+    },
+    overrides: [
+        {
+            files: 'src/**',
+            plugins: ['jest'],
+            extends: ['plugin:jest/recommended']
+        }
+    ]
 };
