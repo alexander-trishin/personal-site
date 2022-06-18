@@ -5,13 +5,13 @@ const { PHASE_PRODUCTION_BUILD } = require('next/constants');
  */
 const securityHeaders = [{ key: 'X-DNS-Prefetch-Control', value: 'on' }];
 
-module.exports = phase => {
+/**
+ * @type {(phase: string) => import('next').NextConfig}
+ */
+const config = phase => {
     const isDev = phase !== PHASE_PRODUCTION_BUILD;
 
-    /**
-     * @type {import('next').NextConfig}
-     */
-    const nextConfig = {
+    return {
         compiler: {
             reactRemoveProperties: !isDev,
             removeConsole: !isDev
@@ -30,9 +30,10 @@ module.exports = phase => {
             locales: ['ru-ru', 'en-us'],
             defaultLocale: isDev ? 'en-us' : 'ru-ru'
         },
+        productionBrowserSourceMaps: process.env.ANALYZE === 'true',
         reactStrictMode: true,
         swcMinify: true
     };
-
-    return nextConfig;
 };
+
+module.exports = config;
