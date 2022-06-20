@@ -4,7 +4,6 @@ export const enum BroadcastChannelName {
 }
 
 export const enum CookieName {
-    ColorScheme = '__Secure-AT.color-scheme',
     CsrfToken = '__Host-AT.csrf-token',
     Session = '__Host-AT.session'
 }
@@ -22,4 +21,8 @@ export const enum KeyCode {
     ArrowLeft = 'ArrowLeft',
     Backspace = 'Backspace',
     Delete = 'Delete'
+}
+
+export const enum LocalStorageKey {
+    ColorScheme = 'AT.color-scheme'
 }

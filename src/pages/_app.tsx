@@ -1,18 +1,16 @@
-import type { AppContext as NextAppContext, AppProps as NextAppProps } from 'next/app';
+import type { AppProps as NextAppProps } from 'next/app';
 
-import { ColorScheme, ColorSchemeProvider, MantineProvider } from '@mantine/core';
+import { ColorSchemeProvider, MantineProvider } from '@mantine/core';
 import { NotificationsProvider } from '@mantine/notifications';
 import { AbstractIntlMessages, NextIntlProvider } from 'next-intl';
 import Head from 'next/head';
-import { useMemo } from 'react';
+import { useState } from 'react';
 import { Hydrate as ReactQueryHydrate, QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 
-import { CookieName } from 'common/constants';
 import { mantineDefaultProps, mantineTheme } from 'common/theme';
 import { Favicon } from 'components';
 import { useColorScheme } from 'hooks';
-import { getCookie } from 'utils/cookie';
 
 interface PageProps {
     dehydratedState?: unknown;
@@ -20,17 +18,15 @@ interface PageProps {
 }
 
 interface AppProps extends Omit<NextAppProps, 'pageProps'> {
-    colorScheme: ColorScheme;
     pageProps: PageProps;
 }
 
 const App = (props: AppProps) => {
-    const { Component, pageProps, colorScheme: colorSchemeFromProps } = props;
+    const { Component, pageProps } = props;
     const { messages } = pageProps;
 
-    const [colorScheme, setColorScheme] = useColorScheme(colorSchemeFromProps);
-
-    const queryClient = useMemo(() => new QueryClient(), []);
+    const [colorScheme, setColorScheme] = useColorScheme();
+    const [queryClient] = useState(() => new QueryClient());
 
     return (
         <>
@@ -48,6 +44,7 @@ const App = (props: AppProps) => {
                     <MantineProvider
                         defaultProps={mantineDefaultProps}
                         theme={{ ...mantineTheme, colorScheme }}
+                        withCSSVariables
                         withNormalizeCSS
                         withGlobalStyles
                     >
@@ -64,12 +61,6 @@ const App = (props: AppProps) => {
             </NextIntlProvider>
         </>
     );
-};
-
-App.getInitialProps = async (context: NextAppContext) => {
-    return {
-        colorScheme: getCookie<ColorScheme>(CookieName.ColorScheme, context.ctx) || 'light'
-    };
 };
 
 export default App;

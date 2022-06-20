@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl';
 import Head from 'next/head';
 import Link from 'next/link';
 
-import useStyles from 'assets/styles/ErrorPage';
+import useStyles from 'assets/styles/pages/error';
 import { getMessages } from 'i18n';
 
 const NotFoundPage = () => {

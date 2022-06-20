@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl';
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
 
-import useStyles from 'assets/styles/HomePage';
+import useStyles from 'assets/styles/pages/home';
 import Footer from 'components/Home/Footer';
 import Header from 'components/Home/Header';
 import { getMessages } from 'i18n';
