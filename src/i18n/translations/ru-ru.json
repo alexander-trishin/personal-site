@@ -30,10 +30,7 @@
         "title": "Войти"
     },
     "shared": {
-        "author": {
-            "first-name": "Александр",
-            "last-name": "Тришин"
-        },
+        "author": "Александр Тришин",
         "rights-reserved": "Все права защищены",
         "theme": {
             "dark-mode": "Тёмная тема",

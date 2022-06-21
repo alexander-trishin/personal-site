@@ -1,38 +1,33 @@
 import type { GetStaticProps } from 'next';
 
-import { Button, Container, Group, Text, Title } from '@mantine/core';
+import { Button, Group } from '@mantine/core';
 import { useTranslations } from 'next-intl';
-import Head from 'next/head';
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 
-import useStyles from 'assets/styles/pages/error';
+import { ErrorShell } from 'components';
 import { getMessages } from 'i18n';
+
+const PageNotFoundImage = dynamic(() => import('assets/svg/PageNotFound'));
 
 const NotFoundPage = () => {
     const t = useTranslations('not-found');
 
-    const { classes } = useStyles();
-
     return (
-        <>
-            <Head>
-                <title>{t('title')}</title>
-            </Head>
-            <Container className={classes.root}>
-                <div className={classes.label}>404</div>
-                <Title className={classes.title}>{t('heading')}</Title>
-                <Text color="dimmed" size="lg" align="center" className={classes.description}>
-                    {t('description')}
-                </Text>
-                <Group position="center">
-                    <Link href="/" passHref>
-                        <Button component="a" variant="subtle" size="md">
-                            {t('go-home')}
-                        </Button>
-                    </Link>
-                </Group>
-            </Container>
-        </>
+        <ErrorShell
+            title={t('title')}
+            image={<PageNotFoundImage />}
+            caption={t('heading')}
+            message={t('description')}
+        >
+            <Group position="center">
+                <Link href="/" passHref replace>
+                    <Button component="a" variant="default">
+                        {t('go-home')}
+                    </Button>
+                </Link>
+            </Group>
+        </ErrorShell>
     );
 };
 

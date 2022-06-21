@@ -2,10 +2,10 @@ import type { GetStaticProps } from 'next';
 
 import { Box } from '@mantine/core';
 import { useTranslations } from 'next-intl';
-import Head from 'next/head';
 import { useEffect, useState } from 'react';
 
 import useStyles from 'assets/styles/pages/home';
+import { SearchEngineOptimization } from 'components';
 import Footer from 'components/Home/Footer';
 import Header from 'components/Home/Header';
 import { getMessages } from 'i18n';
@@ -41,9 +41,7 @@ const IndexPage = () => {
 
     return (
         <Box className={classes.root}>
-            <Head>
-                <title>{`${t('author.first-name')} ${t('author.last-name')}`}</title>
-            </Head>
+            <SearchEngineOptimization title={t('author')} />
 
             <Header />
 

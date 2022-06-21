@@ -32,12 +32,14 @@ const App = (props: AppProps) => {
         <>
             <Head>
                 <meta
+                    key="viewport"
                     name="viewport"
                     content="minimum-scale=1, initial-scale=1, width=device-width"
                 />
-                <meta name="color-scheme" content="dark light" />
-                <Favicon colorScheme={colorScheme} />
+                <meta key="color-sheme" name="color-scheme" content="dark light" />
             </Head>
+
+            <Favicon colorScheme={colorScheme} />
 
             <NextIntlProvider messages={messages}>
                 <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={setColorScheme}>

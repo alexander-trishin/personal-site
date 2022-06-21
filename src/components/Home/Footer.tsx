@@ -94,7 +94,7 @@ const Footer = (props: PropsWithoutRef<FooterProps>) => {
                 </Box>
                 <Box className={classes.copyright}>
                     <Text component="span" inherit>
-                        &copy; {t('author.first-name')} {t('author.last-name')} 2022
+                        &copy; {t('author')} 2022
                     </Text>
                     <Text component="span" className={classes.separator} inherit>
                         |

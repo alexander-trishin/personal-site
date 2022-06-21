@@ -30,10 +30,7 @@
         "title": "Sign In"
     },
     "shared": {
-        "author": {
-            "first-name": "Alexander",
-            "last-name": "Trishin"
-        },
+        "author": "Alexander Trishin",
         "rights-reserved": "All rights reserved",
         "theme": {
             "dark-mode": "Dark mode",

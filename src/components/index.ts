@@ -1,3 +1,4 @@
 export { ColorSchemeToggle } from './ColorSchemeToggle';
-export { Favicon } from './Head';
+export { Favicon, SearchEngineOptimization } from './Head';
+export { ErrorShell } from './Layout';
 export { Logo } from './Logo';
