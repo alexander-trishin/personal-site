@@ -1,12 +1,6 @@
-import { MantineProviderProps } from '@mantine/core';
-
-import { ThemeOther, clamp, getPrimaryColor } from './theme.other';
-
-type Theme = Omit<Required<MantineProviderProps>['theme'], 'other'> & {
-    other: ThemeOther;
-};
-
-type DefaultProps = Required<MantineProviderProps>['defaultProps'];
+import { colors } from './theme.colors';
+import { clamp, getPrimaryColor } from './theme.other';
+import { DefaultProps, Theme } from './theme.types';
 
 export const mantineTheme: Theme = {
     breakpoints: {
@@ -17,22 +11,8 @@ export const mantineTheme: Theme = {
         xl: 1400
     },
 
+    colors,
     colorScheme: 'light',
-
-    colors: {
-        violet: [
-            '#F5F3FF',
-            '#EDE9FE',
-            '#DDD6FE',
-            '#C4B5FD',
-            '#A78BFA',
-            '#8B5CF6',
-            '#7C3AED',
-            '#6D28D9',
-            '#5B21B6',
-            '#4C1D95'
-        ]
-    },
 
     primaryColor: 'violet',
     primaryShade: {
