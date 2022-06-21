@@ -1,14 +1,12 @@
 import { DefaultMantineColor } from '@mantine/core';
 import { useMemo } from 'react';
 
-import { PasswordRequirement } from './PasswordField.types';
-
-const useProgress = (requirements: PasswordRequirement[], value: string) => {
+const useProgress = (requirements: RegExp[], value: string) => {
     const strength = useMemo(() => {
         let multiplier = value.length > 5 ? 0 : 1;
 
         requirements.forEach(requirement => {
-            if (!requirement.value.test(value)) {
+            if (!requirement.test(value)) {
                 multiplier += 1;
             }
         });

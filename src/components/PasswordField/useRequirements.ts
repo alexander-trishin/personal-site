@@ -1,29 +1,19 @@
-import { useTranslations } from 'next-intl';
 import { useMemo } from 'react';
 
-import { PasswordRequirement, PasswordRequirementProps } from './PasswordField.types';
-
-const useRequirements = (props: PasswordRequirementProps) => {
-    const { requireMinLength = 0, requireNumber, requireLowercase, requireUppercase } = props;
-
-    const t = useTranslations('password-field');
-
+const useRequirements = (minStrength?: number | null) => {
     const requirements = useMemo(() => {
-        const result = new Array<PasswordRequirement>();
+        const result = new Array<RegExp>();
 
-        if (requireMinLength > 0) {
-            result.push({
-                value: new RegExp(`.{${requireMinLength},}`),
-                label: t('min', { limit: requireMinLength })
-            });
+        if (minStrength) {
+            result.push(new RegExp(`.{${minStrength},}`));
         }
 
-        if (requireNumber) result.push({ value: /[0-9]/, label: t('number') });
-        if (requireLowercase) result.push({ value: /[a-z]/, label: t('lowercase') });
-        if (requireUppercase) result.push({ value: /[A-Z]/, label: t('uppercase') });
+        result.push(/[0-9]/);
+        result.push(/[a-z]/);
+        result.push(/[A-Z]/);
 
         return result;
-    }, [t, requireMinLength, requireNumber, requireLowercase, requireUppercase]);
+    }, [minStrength]);
 
     return requirements;
 };
