@@ -12,6 +12,8 @@ import { mantineDefaultProps, mantineTheme } from 'common/theme';
 import { Favicon } from 'components';
 import { useColorScheme } from 'hooks';
 
+import 'assets/styles/global.css';
+
 interface PageProps {
     dehydratedState?: unknown;
     messages?: AbstractIntlMessages;
