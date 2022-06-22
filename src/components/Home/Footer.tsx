@@ -21,20 +21,8 @@ const useFooterStyles = createStyles(theme => {
             textAlign: 'center',
 
             [theme.fn.largerThan('sm')]: {
-                maxWidth: theme.breakpoints.sm,
+                maxWidth: theme.breakpoints.xl,
                 textAlign: 'start'
-            },
-
-            [theme.fn.largerThan('md')]: {
-                maxWidth: theme.breakpoints.md
-            },
-
-            [theme.fn.largerThan('lg')]: {
-                maxWidth: theme.breakpoints.lg
-            },
-
-            [theme.fn.largerThan('xl')]: {
-                maxWidth: theme.breakpoints.xl
             }
         },
 

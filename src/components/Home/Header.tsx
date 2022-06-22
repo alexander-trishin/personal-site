@@ -12,15 +12,16 @@ import {
     useMantineTheme
 } from '@mantine/core';
 import { useMediaQuery, useScrollLock, useWindowScroll } from '@mantine/hooks';
-import { MouseEvent, PropsWithoutRef, useRef, useState } from 'react';
+import Link from 'next/link';
+import { PropsWithoutRef, useRef, useState } from 'react';
 
+import { ZIndex } from 'common/constants';
 import { ColorSchemeToggle } from 'components';
 import { Logo } from 'components/Logo';
 
 type NavLink = {
     label: string;
     href: string;
-    onClick?: (event: MouseEvent<HTMLAnchorElement>) => void;
 };
 
 type HeaderProps = Omit<BoxProps<'header'>, 'component'> & {
@@ -43,7 +44,7 @@ const useHeaderStyles = createStyles(
 
             ...(typeof stackY === 'number' && {
                 position: 'fixed',
-                zIndex: 100,
+                zIndex: ZIndex.Header,
 
                 transition: 'box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
 
@@ -65,7 +66,7 @@ const useHeaderStyles = createStyles(
 
         sidebar: {
             position: 'fixed',
-            zIndex: 100,
+            zIndex: ZIndex.Sidebar,
 
             inset: 0,
             top: headerHeight,
@@ -112,24 +113,22 @@ const Header = (props: PropsWithoutRef<HeaderProps>) => {
 
     const [isSidebarOpen, toggleSidebar] = useSidebar(isMobile);
 
-    const links = navLinks.map(({ label, href, onClick }) => {
-        const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    const links = navLinks.map(({ label, href }) => {
+        const handleClick = () => {
             toggleSidebar();
-
-            onClick?.(event);
         };
 
         return (
-            <Button
-                key={label}
-                className={classes.navLink}
-                variant="default"
-                component="a"
-                href={href}
-                onClick={handleClick}
-            >
-                {label}
-            </Button>
+            <Link key={label} href={href} shallow replace passHref>
+                <Button
+                    className={classes.navLink}
+                    variant="default"
+                    component="a"
+                    onClick={handleClick}
+                >
+                    {label}
+                </Button>
+            </Link>
         );
     });
 
