@@ -5,9 +5,7 @@ import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 
 import useStyles from 'assets/styles/pages/home';
-import { SearchEngineOptimization } from 'components';
-import Footer from 'components/Home/Footer';
-import Header from 'components/Home/Header';
+import { Footer, Header, SearchEngineOptimization } from 'components';
 import { getMessages } from 'i18n';
 
 const IndexPage = () => {
