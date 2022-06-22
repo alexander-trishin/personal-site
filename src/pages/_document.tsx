@@ -1,12 +1,12 @@
 import { createGetInitialProps } from '@mantine/next';
 import NextDocument, { Head, Html, Main, NextScript } from 'next/document';
 
-import { LocalStorageKey } from 'common/constants';
+import { LocalStorageKey, ZIndex } from 'common/constants';
 
 const getInitialProps = createGetInitialProps();
 
 const script = `(function(){document.documentElement.dataset.theme=localStorage.getItem('${LocalStorageKey.ColorScheme}')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')})()`;
-const style = `body::before{content:'';display:block;position:fixed;inset:0;background:var(--at-body-bg-color);z-index:99999}html[data-render] body::before{display:none} :root[data-theme='light']{--at-body-bg-color:var(--mantine-color-white)}:root[data-theme='dark'] {--at-body-bg-color:var(--mantine-color-dark-7)}`;
+const style = `body::before{content:'';display:block;position:fixed;inset:0;background:var(--at-body-bg-color);z-index:${ZIndex.Everything}}html[data-render] body::before{display:none} :root[data-theme='light']{--at-body-bg-color:var(--mantine-color-white)}:root[data-theme='dark'] {--at-body-bg-color:var(--mantine-color-dark-7)}`;
 const noscript = `<style>body::before{content:none}</style>`;
 
 class Document extends NextDocument {
