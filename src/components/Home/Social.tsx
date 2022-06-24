@@ -1,18 +1,9 @@
 import { ActionIcon, createStyles } from '@mantine/core';
+import { useTranslations } from 'next-intl';
 import { HTMLAttributes, PropsWithoutRef } from 'react';
 import { FaLinkedinIn, FaInstagram, FaGithub } from 'react-icons/fa';
 
 type SocialProps = HTMLAttributes<HTMLUListElement>;
-
-const links = [
-    {
-        title: 'LinkedIn',
-        icon: FaLinkedinIn,
-        address: 'https://www.linkedin.com/in/trishinalexander'
-    },
-    { title: 'GitHub', icon: FaGithub, address: 'https://github.com/alexander-trishin' },
-    { title: 'Instagram', icon: FaInstagram, address: 'https://www.instagram.com/effecto.exe' }
-];
 
 const useSocialStyles = createStyles(theme => ({
     list: {
@@ -46,7 +37,23 @@ const useSocialStyles = createStyles(theme => ({
 
 const Social = (props: PropsWithoutRef<SocialProps>) => {
     const { className, ...rest } = props;
+
     const { classes, cx } = useSocialStyles();
+    const t = useTranslations('social');
+
+    const links = [
+        {
+            title: t('linkedin'),
+            icon: FaLinkedinIn,
+            address: 'https://www.linkedin.com/in/trishinalexander'
+        },
+        { title: t('github'), icon: FaGithub, address: 'https://github.com/alexander-trishin' },
+        {
+            title: t('instagram'),
+            icon: FaInstagram,
+            address: 'https://www.instagram.com/effecto.exe'
+        }
+    ];
 
     return (
         <ul {...rest} className={cx(classes.list, className)}>
@@ -58,8 +65,8 @@ const Social = (props: PropsWithoutRef<SocialProps>) => {
                         variant="transparent"
                         href={address}
                         target="_blank"
-                        title={title}
                         rel="noopener noreferrer"
+                        title={title}
                     >
                         <Icon size="100%" />
                     </ActionIcon>
