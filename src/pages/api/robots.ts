@@ -3,9 +3,9 @@ import type { NextApiHandler } from 'next';
 import { EOL } from 'os';
 import { Readable } from 'stream';
 
-import { HeaderName, HttpMethod, HttpStatus, MimeType } from 'common/constants';
 import { pipeCompress } from 'server/utils/compression';
-import { getBaseUrl } from 'utils/common/url';
+import { HeaderName, HttpMethod, HttpStatus, MimeType } from 'shared/constants';
+import { getBaseUrl } from 'shared/utils/url';
 
 const handler: NextApiHandler = async (request, response) => {
     if (request.method === HttpMethod.Get) {

@@ -4,10 +4,10 @@ import { useTranslations } from 'next-intl';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 
-import { ErrorShell } from 'components';
-import { getMessages } from 'i18n';
+import { ErrorShell } from 'client/components';
+import { getMessages } from 'client/i18n';
 
-const ServerDownImage = dynamic(() => import('assets/svg/ServerDown'));
+const ServerDownImage = dynamic(() => import('client/assets/svg/ServerDown'));
 
 const InternalServerErrorPage = () => {
     const router = useRouter();

@@ -4,9 +4,9 @@ import { Box } from '@mantine/core';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 
-import useStyles from 'assets/styles/pages/home';
-import { Footer, Header, SearchEngineOptimization } from 'components';
-import { getMessages } from 'i18n';
+import useStyles from 'client/assets/styles/pages/home';
+import { Footer, Header, SearchEngineOptimization } from 'client/components';
+import { getMessages } from 'client/i18n';
 
 const IndexPage = () => {
     const t = useTranslations('shared');

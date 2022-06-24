@@ -1,7 +1,7 @@
 import { GetStaticProps } from 'next';
 
-import { Home } from 'components';
-import { getMessages } from 'i18n';
+import { Home } from 'client/components';
+import { getMessages } from 'client/i18n';
 
 const Dev = () => {
     return <Home />;

@@ -8,11 +8,11 @@ import { useState } from 'react';
 import { Hydrate as ReactQueryHydrate, QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 
-import { mantineDefaultProps, mantineTheme } from 'common/theme';
-import { Favicon } from 'components';
-import { useColorScheme } from 'hooks';
+import { Favicon } from 'client/components';
+import { useColorScheme } from 'client/hooks';
+import { mantineDefaultProps, mantineTheme } from 'client/theme';
 
-import 'assets/styles/global.css';
+import 'client/assets/styles/global.css';
 
 interface PageProps {
     dehydratedState?: unknown;

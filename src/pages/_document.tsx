@@ -1,7 +1,7 @@
 import { createGetInitialProps } from '@mantine/next';
 import NextDocument, { Head, Html, Main, NextScript } from 'next/document';
 
-import { LocalStorageKey, ZIndex } from 'common/constants';
+import { LocalStorageKey, ZIndex } from 'client/constants';
 
 const getInitialProps = createGetInitialProps();
 

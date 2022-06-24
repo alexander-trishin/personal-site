@@ -3,8 +3,8 @@ import { createBrotliCompress, createGzip } from 'zlib';
 
 import { NextApiRequest, NextApiResponse } from 'next';
 
-import { ContentEncoding, HeaderName } from 'common/constants';
-import { logger } from 'utils/logging';
+import { ContentEncoding, HeaderName } from 'shared/constants';
+import { logger } from 'shared/utils/logging';
 
 export const pipeCompress = (
     stream: Stream,

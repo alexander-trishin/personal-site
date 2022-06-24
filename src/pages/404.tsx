@@ -5,10 +5,10 @@ import { useTranslations } from 'next-intl';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 
-import { ErrorShell } from 'components';
-import { getMessages } from 'i18n';
+import { ErrorShell } from 'client/components';
+import { getMessages } from 'client/i18n';
 
-const PageNotFoundImage = dynamic(() => import('assets/svg/PageNotFound'));
+const PageNotFoundImage = dynamic(() => import('client/assets/svg/PageNotFound'));
 
 const NotFoundPage = () => {
     const t = useTranslations('not-found');

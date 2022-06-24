@@ -2,9 +2,9 @@ import type { NextApiHandler } from 'next';
 
 import { SitemapStream, SitemapItem, EnumChangefreq } from 'sitemap';
 
-import { HeaderName, HttpMethod, HttpStatus, MimeType } from 'common/constants';
 import { pipeCompress } from 'server/utils/compression';
-import { getBaseUrl } from 'utils/common/url';
+import { HeaderName, HttpMethod, HttpStatus, MimeType } from 'shared/constants';
+import { getBaseUrl } from 'shared/utils/url';
 
 const utcDateToIsoString = (year: number, month: number, day: number) => {
     return new Date(Date.UTC(year, month, day)).toISOString();
