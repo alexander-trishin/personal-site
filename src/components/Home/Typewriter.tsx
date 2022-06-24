@@ -1,5 +1,5 @@
 import { Box, BoxProps } from '@mantine/core';
-import { PropsWithoutRef, useEffect, useRef } from 'react';
+import { PropsWithoutRef, useCallback, useEffect, useRef } from 'react';
 import Typed, { TypedOptions } from 'typed.js';
 
 import { isClientSide } from 'utils/common/dom';
@@ -14,7 +14,7 @@ const Typewriter = (props: PropsWithoutRef<TypewriterProps>) => {
 
     const typedRef = useRef<Typed>();
 
-    useEffect(() => {
+    const restart = useCallback(() => {
         if (isClientSide()) {
             const options: TypedOptions = {
                 stringsElement: sourceRef.current!,
@@ -26,11 +26,15 @@ const Typewriter = (props: PropsWithoutRef<TypewriterProps>) => {
 
             typedRef.current = new Typed(targetRef.current!, options);
         }
+    }, []);
+
+    useEffect(() => {
+        restart();
 
         return () => {
             typedRef.current?.destroy();
         };
-    }, []);
+    }, [children, restart]);
 
     return (
         <>
