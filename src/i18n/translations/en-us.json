@@ -1,10 +1,5 @@
 {
     "authentication": {
-        "providers": {
-            "github": "GitHub",
-            "discord": "Discord",
-            "vk": "VK"
-        },
         "divider": "Or",
         "username": "Username",
         "email": "Email",
@@ -13,6 +8,39 @@
         "login-question": "Don't have an account? <button>Register</button>",
         "register": "Register",
         "register-question": "Already have an account? <button>Log In</button>"
+    },
+    "home-intro": {
+        "image": "Beautiful mountain view",
+        "hello": "Hello, World.",
+        "name": "I'm Alexander Trishin.",
+        "position-1": "Software Engineer",
+        "position-2": "Full-Stack Web Developer",
+        "position-3": "Electric Guitar Player",
+        "position-4": "Photographer",
+        "more": "More about me"
+    },
+    "home-about": {
+        "caption": "About",
+        "caption-description": "Let me introduce myself.",
+        "author-avatar": "Author's avatar",
+        "author-message": "Hey, I'm Alex. I am a software engineer, currently living in Minsk, Belarus. I like building things and learn something new every day. In my free time I like: read, travel, swim, listen to music and play electric guitar.",
+        "card-projects-caption": "Projects (planned)",
+        "card-projects-message": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque inventore autem, quas ipsam quis et laboriosam vero ipsa repellendus atque",
+        "card-photos-caption": "Photos (planned)",
+        "card-photos-message": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque inventore autem, quas ipsam quis et laboriosam vero ipsa repellendus atque",
+        "card-blog-caption": "Blog (planned)",
+        "card-blog-message": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque inventore autem, quas ipsam quis et laboriosam vero ipsa repellendus atque"
+    },
+    "home-contact": {
+        "caption": "Contact",
+        "caption-description": "I'd Love To Hear From You."
+    },
+    "home-contact-form": {
+        "name": "Name",
+        "email": "Email",
+        "subject": "Subject",
+        "message": "Message",
+        "submit": "Submit"
     },
     "internal-server-error": {
         "title": "500 Internal Server Error",
@@ -28,6 +56,13 @@
     },
     "sign-in": {
         "title": "Sign In"
+    },
+    "social": {
+        "discord": "Discord",
+        "github": "GitHub",
+        "instagram": "Instagram",
+        "linkedin": "LinkedIn",
+        "vk": "VK"
     },
     "shared": {
         "author": "Alexander Trishin",
