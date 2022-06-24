@@ -1,6 +1,6 @@
 import { Box, BoxProps, Container, createStyles, Text } from '@mantine/core';
 import { useTranslations } from 'next-intl';
-import { PropsWithoutRef } from 'react';
+import { forwardRef } from 'react';
 
 import { ThemeOther } from 'common/theme';
 
@@ -21,7 +21,7 @@ const useFooterStyles = createStyles(theme => {
             textAlign: 'center',
 
             [theme.fn.largerThan('sm')]: {
-                maxWidth: theme.breakpoints.xl,
+                maxWidth: theme.breakpoints.md,
                 textAlign: 'start'
             }
         },
@@ -69,13 +69,13 @@ const useFooterStyles = createStyles(theme => {
     };
 });
 
-const Footer = (props: PropsWithoutRef<FooterProps>) => {
+const Footer = forwardRef<HTMLDivElement, FooterProps>((props, ref) => {
     const { classes } = useFooterStyles();
 
     const t = useTranslations('shared');
 
     return (
-        <Box {...props} component="footer">
+        <Box {...props} component="footer" ref={ref}>
             <Container className={classes.container}>
                 <Box className={classes.social}>
                     <Social />
@@ -94,6 +94,8 @@ const Footer = (props: PropsWithoutRef<FooterProps>) => {
             </Container>
         </Box>
     );
-};
+});
+
+Footer.displayName = 'Footer';
 
 export default Footer;
