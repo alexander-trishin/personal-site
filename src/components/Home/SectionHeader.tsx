@@ -37,7 +37,7 @@ const useSectionHeaderStyles = createStyles(theme => {
 const SectionHeader = (props: PropsWithoutRef<SectionHeaderProps>) => {
     const { caption, message, ...rest } = props;
 
-    const { classes } = useSectionHeaderStyles();
+    const { classes, cx } = useSectionHeaderStyles();
 
     return (
         <Box {...rest}>
@@ -47,13 +47,18 @@ const SectionHeader = (props: PropsWithoutRef<SectionHeaderProps>) => {
                     weight={700}
                     align="center"
                     transform="uppercase"
-                    className={classes.caption}
+                    className={cx(classes.text, classes.caption)}
                 >
                     {caption}
                 </Text>
             )}
             {message && (
-                <Text component="h4" weight={700} align="center" className={classes.message}>
+                <Text
+                    component="h4"
+                    weight={700}
+                    align="center"
+                    className={cx(classes.text, classes.message)}
+                >
                     {message}
                 </Text>
             )}
