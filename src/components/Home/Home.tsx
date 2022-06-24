@@ -1,16 +1,18 @@
-import { Box } from '@mantine/core';
 import { useTranslations } from 'next-intl';
 
 import { SearchEngineOptimization } from 'components';
 
+import About from './About';
 import BackToTopButton from './BackToTopButton';
 import Contact from './Contact';
-import Footer from './Footer';
+import FooterParallax from './FooterParallax';
 import Header from './Header';
 import Intro from './Intro';
+import Main from './Main';
 
 const links = [
     { label: 'Home', href: '#intro' },
+    { label: 'About', href: '#about' },
     { label: 'Contact', href: '#contact' }
 ];
 
@@ -23,12 +25,13 @@ const Home = () => {
 
             <Header stackY={150} navLinks={links} />
 
-            <Box component="main">
-                <Intro id="intro" />
+            <Main>
+                <Intro id="intro" showMoreHref="#about" />
+                <About id="about" />
                 <Contact id="contact" />
-            </Box>
+            </Main>
 
-            <Footer />
+            <FooterParallax />
             <BackToTopButton href="#intro" />
         </>
     );
