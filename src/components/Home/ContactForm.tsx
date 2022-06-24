@@ -1,9 +1,12 @@
-import { Box, Button, Textarea, TextInput, TextInputProps } from '@mantine/core';
+import { Box, BoxProps, Button, Textarea, TextInput, TextInputProps } from '@mantine/core';
 import { useForm, zodResolver } from '@mantine/form';
 import { useTranslations } from 'next-intl';
+import { PropsWithoutRef } from 'react';
 import { z } from 'zod';
 
 import { trim } from 'utils/common/form';
+
+type ContactFormProps = Omit<BoxProps<'form'>, 'component' | 'onSubmit'>;
 
 const createSchema = (t: ReturnType<typeof useTranslations>) => {
     return z.object({
@@ -46,7 +49,8 @@ const inputStyles: TextInputProps['styles'] = {
     }
 };
 
-const ContactForm = () => {
+const ContactForm = (props: PropsWithoutRef<ContactFormProps>) => {
+    const t = useTranslations('home-contact-form');
     const tv = useTranslations('validation');
 
     const form = useForm({
@@ -62,25 +66,25 @@ const ContactForm = () => {
     const handleSubmit = form.onSubmit(() => {});
 
     return (
-        <Box component="form" onSubmit={handleSubmit}>
+        <Box {...props} component="form" onSubmit={handleSubmit}>
             <TextInput
                 {...form.getInputProps('name')}
                 styles={inputStyles}
-                placeholder="Name"
+                placeholder={t('name')}
                 mb="xs"
             />
 
             <TextInput
                 {...form.getInputProps('email')}
                 styles={inputStyles}
-                placeholder="Email"
+                placeholder={t('email')}
                 mb="xs"
             />
 
             <TextInput
                 {...form.getInputProps('subject')}
                 styles={inputStyles}
-                placeholder="Subject"
+                placeholder={t('subject')}
                 mb="xs"
             />
 
@@ -88,12 +92,12 @@ const ContactForm = () => {
                 {...form.getInputProps('message')}
                 styles={inputStyles}
                 minRows={5}
-                placeholder="Message"
+                placeholder={t('message')}
                 mb="xl"
             />
 
             <Button type="submit" radius="xs" size="md" uppercase fullWidth>
-                Submit
+                {t('submit')}
             </Button>
         </Box>
     );
