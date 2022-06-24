@@ -16,8 +16,7 @@ import Link from 'next/link';
 import { PropsWithoutRef, useRef, useState } from 'react';
 
 import { ZIndex } from 'common/constants';
-import { ColorSchemeToggle } from 'components';
-import { Logo } from 'components/Logo';
+import { ColorSchemeToggle, LanguageToggle, Logo } from 'components';
 
 type NavLink = {
     label: string;
@@ -149,9 +148,10 @@ const Header = (props: PropsWithoutRef<HeaderProps>) => {
                             </Group>
                         )}
 
-                        <Box ml="xl">
+                        <Group spacing="md" ml="xl">
+                            <LanguageToggle variant="default" size={30} />
                             <ColorSchemeToggle variant="default" size={30} />
-                        </Box>
+                        </Group>
                     </Group>
                 </Group>
             </Container>
