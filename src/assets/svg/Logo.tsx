@@ -1,4 +1,4 @@
-import { SvgProps, useSvgTheme } from './core';
+import { SvgProps, useSvgTheme } from 'assets/svg/utils';
 
 const Authentication = (props: SvgProps) => {
     const { isDarkMode, black, white } = useSvgTheme();

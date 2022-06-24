@@ -1,4 +1,4 @@
-import { SvgProps, useSvgTheme } from './core';
+import { SvgProps, useSvgTheme } from 'assets/svg/utils';
 
 const PageNotFound = (props: SvgProps) => {
     const { colors, isDarkMode, primaryColorCode, white } = useSvgTheme();
