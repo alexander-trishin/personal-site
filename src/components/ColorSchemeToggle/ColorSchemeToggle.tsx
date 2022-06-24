@@ -14,9 +14,8 @@ import { BiSun, BiMoon } from 'react-icons/bi';
 
 type ColorSchemeToggleProps = ActionIconProps<'button'>;
 
-const useColorSchemeToggleStyles = createStyles(theme => ({
+const useColorSchemeToggleStyles = createStyles(() => ({
     root: {
-        ...theme.fn.focusStyles(),
         backgroundColor: 'transparent'
     }
 }));
