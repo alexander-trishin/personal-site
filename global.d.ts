@@ -20,6 +20,7 @@ declare namespace NodeJS {
         readonly SECURE_INTEGRITY: string;
 
         readonly VERCEL_ENV?: string;
+        readonly VERCEL_URL?: string;
         readonly VERCEL_GITHUB_COMMIT_SHA?: string;
     }
 }

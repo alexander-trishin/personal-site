@@ -6,7 +6,7 @@ const { send, stream } = logflarePinoVercel({
     sourceToken: process.env.LOGFLARE_SOURCE_TOKEN
 });
 
-const logger = pino(
+export const logger = pino(
     {
         browser: { transmit: { send } },
         level: 'error',
@@ -17,5 +17,3 @@ const logger = pino(
     },
     stream
 );
-
-export default logger;

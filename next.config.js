@@ -16,7 +16,7 @@ const config = phase => {
             reactRemoveProperties: !isDev,
             removeConsole: !isDev
         },
-        async headers() {
+        headers: async () => {
             if (isDev) return [];
 
             return [
@@ -26,6 +26,10 @@ const config = phase => {
                 }
             ];
         },
+        rewrites: async () => [
+            { source: '/robots.txt', destination: '/api/robots' },
+            { source: '/sitemap.xml', destination: '/api/sitemap' }
+        ],
         i18n: {
             locales: ['ru-ru', 'en-us'],
             defaultLocale: isDev ? 'en-us' : 'ru-ru'

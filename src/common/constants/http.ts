@@ -3,8 +3,16 @@ export const enum CookieName {
     Session = '__Host-AT.session'
 }
 
+export const enum ContentEncoding {
+    Brotli = 'br',
+    GZip = 'gzip'
+}
+
 export const enum HeaderName {
+    AcceptEncoding = 'Accept-Encoding',
     Allow = 'Allow',
+    ContentEncoding = 'Content-Encoding',
+    ContentType = 'Content-Type',
     CsrfToken = 'AT-CSRF-Token',
     SetCookie = 'Set-Cookie'
 }
@@ -34,4 +42,9 @@ export const enum HttpStatus {
     Code429TooManyRequests = 429,
     Code500InternalServerError = 500,
     Code501NotImplemented = 501
+}
+
+export const enum MimeType {
+    TextPlain = 'text/plain',
+    TextXml = 'text/xml'
 }
