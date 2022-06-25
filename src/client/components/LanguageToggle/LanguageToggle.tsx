@@ -1,11 +1,12 @@
 import { ActionIcon, ActionIconProps, createStyles } from '@mantine/core';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { MouseEventHandler, PropsWithoutRef } from 'react';
+import { PropsWithoutRef } from 'react';
 
 import FlagRu from 'client/assets/svg/FlagRu';
 import FlagUs from 'client/assets/svg/FlagUs';
 
-type LanguageToggleProps = ActionIconProps<'button'>;
+type LanguageToggleProps = Omit<ActionIconProps<'a'>, 'component'>;
 
 const useLanguageToggleStyles = createStyles(() => ({
     root: {
@@ -15,26 +16,25 @@ const useLanguageToggleStyles = createStyles(() => ({
 }));
 
 const LanguageToggle = (props: PropsWithoutRef<LanguageToggleProps>) => {
-    const { className, onClick, ...rest } = props;
+    const { className, ...rest } = props;
 
     const { classes, cx } = useLanguageToggleStyles();
-    const { locale, pathname, query, asPath, replace } = useRouter();
+    const { locale, asPath } = useRouter();
 
-    const Icon = locale === 'ru-ru' ? FlagRu : FlagUs;
-
-    const toggleLocale: MouseEventHandler<HTMLButtonElement> = event => {
-        replace({ pathname, query }, asPath, {
-            locale: locale === 'ru-ru' ? 'en-us' : 'ru-ru',
-            scroll: false
-        });
-
-        onClick?.(event);
-    };
+    const nextLocale = locale === 'ru' ? 'en' : 'ru';
+    const Icon = locale === 'ru' ? FlagRu : FlagUs;
 
     return (
-        <ActionIcon {...rest} className={cx(classes.root, className)} onClick={toggleLocale}>
-            <Icon />
-        </ActionIcon>
+        <Link replace href={asPath} locale={nextLocale} scroll={false} passHref>
+            <ActionIcon
+                {...rest}
+                component="a"
+                lang={nextLocale}
+                className={cx(classes.root, className)}
+            >
+                <Icon />
+            </ActionIcon>
+        </Link>
     );
 };
 

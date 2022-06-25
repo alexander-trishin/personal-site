@@ -1,4 +1,4 @@
-type Messages = typeof import('./src/client/i18n/translations/en-us.json');
+type Messages = typeof import('./src/client/i18n/translations/en.json');
 
 declare interface IntlMessage extends Messages {}
 

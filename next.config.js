@@ -26,13 +26,9 @@ const config = phase => {
                 }
             ];
         },
-        rewrites: async () => [
-            { source: '/robots.txt', destination: '/api/robots' },
-            { source: '/sitemap.xml', destination: '/api/sitemap' }
-        ],
         i18n: {
-            locales: ['ru-ru', 'en-us'],
-            defaultLocale: isDev ? 'en-us' : 'ru-ru'
+            locales: ['ru', 'en'],
+            defaultLocale: isDev ? 'en' : 'ru'
         },
         productionBrowserSourceMaps: process.env.ANALYZE === 'true',
         reactStrictMode: true,

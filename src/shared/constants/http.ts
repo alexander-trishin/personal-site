@@ -11,6 +11,7 @@ export const enum ContentEncoding {
 export const enum HeaderName {
     AcceptEncoding = 'Accept-Encoding',
     Allow = 'Allow',
+    CacheControl = 'Cache-Control',
     ContentEncoding = 'Content-Encoding',
     ContentType = 'Content-Type',
     CsrfToken = 'AT-CSRF-Token',

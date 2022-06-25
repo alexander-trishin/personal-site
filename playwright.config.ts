@@ -23,7 +23,7 @@ const config: PlaywrightTestConfig = {
     },
     use: {
         baseURL: 'http://localhost:4000',
-        locale: 'en-us'
+        locale: 'en'
     },
     testDir: './tests/e2e'
 };

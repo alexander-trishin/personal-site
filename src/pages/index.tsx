@@ -33,12 +33,13 @@ const IndexPage = (props: PropsWithoutRef<IndexPageProps>) => {
 
     useEffect(() => {
         const updateDistance = () => {
-            setDistance(prevDistance => {
-                if (prevDistance > 0) {
-                    setTimeout(updateDistance, 1000);
-                }
-                return new Date(2022, 6, 1).getTime() - new Date().getTime();
-            });
+            setDistance(prevDistance =>
+                prevDistance > 0
+                    ? new Date(2022, 6, 1).getTime() - new Date().getTime()
+                    : prevDistance
+            );
+
+            setTimeout(updateDistance, 1000);
         };
 
         updateDistance();
