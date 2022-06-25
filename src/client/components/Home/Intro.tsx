@@ -5,10 +5,11 @@ import Link from 'next/link';
 import { forwardRef } from 'react';
 import { GoChevronDown } from 'react-icons/go';
 
+import { Typewriter } from 'client/components';
+
 import useIntroStyles from './Intro.styles';
 import Section from './Section';
 import Social from './Social';
-import Typewriter from './Typewriter';
 
 type IntroProps = Omit<BoxProps<'section'>, 'component'> & {
     showMoreHref?: string;
