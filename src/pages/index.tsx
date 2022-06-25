@@ -2,40 +2,56 @@ import type { GetStaticProps } from 'next';
 
 import { Box } from '@mantine/core';
 import { useTranslations } from 'next-intl';
-import { useEffect, useState } from 'react';
+import { PropsWithoutRef, useEffect, useState } from 'react';
 
 import useStyles from 'client/assets/styles/pages/home';
 import { Footer, Header, SearchEngineOptimization } from 'client/components';
 import { getMessages } from 'client/i18n';
 
-const IndexPage = () => {
-    const t = useTranslations('shared');
+type IndexPageProps = {
+    millisecondsToRelease: number;
+};
+
+const stringify = (value: number) => String(Math.floor(value)).padStart(2, '0');
+
+const getDays = (value: number) => stringify(value / (1000 * 60 * 60 * 24));
+const getHours = (value: number) => stringify((value % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+const getMinutes = (value: number) => stringify((value % (1000 * 60 * 60)) / (1000 * 60));
+const getSeconds = (value: number) => stringify((value % (1000 * 60)) / 1000);
+
+const IndexPage = (props: PropsWithoutRef<IndexPageProps>) => {
+    const { millisecondsToRelease } = props;
 
     const { classes } = useStyles();
+    const t = useTranslations('shared');
 
-    const [days, setDays] = useState('00');
-    const [hours, setHours] = useState('00');
-    const [minutes, setMinutes] = useState('00');
-    const [seconds, setSeconds] = useState('00');
+    const [distance, setDistance] = useState(millisecondsToRelease);
+    const [days, setDays] = useState(() => getDays(distance));
+    const [hours, setHours] = useState(() => getHours(distance));
+    const [minutes, setMinutes] = useState(() => getMinutes(distance));
+    const [seconds, setSeconds] = useState(() => getSeconds(distance));
 
     useEffect(() => {
-        const updateTimer = () => {
-            const distance = new Date(2022, 6, 1).getTime() - new Date().getTime();
-
-            if (distance < 0) return;
-
-            const stringify = (value: number) => String(Math.floor(value)).padStart(2, '0');
-
-            setDays(stringify(distance / (1000 * 60 * 60 * 24)));
-            setHours(stringify((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
-            setMinutes(stringify((distance % (1000 * 60 * 60)) / (1000 * 60)));
-            setSeconds(stringify((distance % (1000 * 60)) / 1000));
-
-            setTimeout(updateTimer, 1000);
+        const updateDistance = () => {
+            setDistance(prevDistance => {
+                if (prevDistance > 0) {
+                    setTimeout(updateDistance, 1000);
+                }
+                return new Date(2022, 6, 1).getTime() - new Date().getTime();
+            });
         };
 
-        updateTimer();
+        updateDistance();
     }, []);
+
+    useEffect(() => {
+        if (distance > 0) {
+            setDays(getDays(distance));
+            setHours(getHours(distance));
+            setMinutes(getMinutes(distance));
+            setSeconds(getSeconds(distance));
+        }
+    }, [distance]);
 
     return (
         <Box className={classes.root}>
@@ -73,7 +89,11 @@ const IndexPage = () => {
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
     return {
         props: {
-            messages: await getMessages(locale, ['shared'])
+            millisecondsToRelease: Math.max(
+                new Date(Date.UTC(2022, 6, 1)).getTime() - new Date().getTime(),
+                0
+            ),
+            messages: await getMessages(locale, ['shared', 'social'])
         }
     };
 };
