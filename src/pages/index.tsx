@@ -94,7 +94,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
                 new Date(Date.UTC(2022, 6, 1)).getTime() - new Date().getTime(),
                 0
             ),
-            messages: await getMessages(locale, ['shared', 'social'])
+            messages: await getMessages(locale, ['i18n', 'shared', 'social'])
         }
     };
 };

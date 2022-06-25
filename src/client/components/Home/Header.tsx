@@ -8,15 +8,14 @@ import {
     Group,
     Paper,
     Stack,
-    Transition,
-    useMantineTheme
+    Transition
 } from '@mantine/core';
 import { useMediaQuery, useScrollLock, useWindowScroll } from '@mantine/hooks';
 import Link from 'next/link';
 import { PropsWithoutRef, useRef, useState } from 'react';
 
+import { ColorSchemeToggle, LanguagePicker, Logo } from 'client/components';
 import { ZIndex } from 'client/constants';
-import { ColorSchemeToggle, LanguageToggle, Logo } from 'client/components';
 
 type NavLink = {
     label: string;
@@ -101,14 +100,13 @@ const Header = (props: PropsWithoutRef<HeaderProps>) => {
     const headerRef = useRef<HTMLDivElement>(null);
     const [scroll] = useWindowScroll();
 
-    const theme = useMantineTheme();
-    const isMobile = useMediaQuery(`(max-width: ${theme.breakpoints.sm}px)`, true);
-
-    const { classes, cx } = useHeaderStyles({
+    const { classes, cx, theme } = useHeaderStyles({
         headerHeight: headerRef.current?.clientHeight,
         scrollY: scroll.y,
         stackY
     });
+
+    const isMobile = useMediaQuery(`(max-width: ${theme.breakpoints.sm}px)`, true);
 
     const [isSidebarOpen, toggleSidebar] = useSidebar(isMobile);
 
@@ -149,7 +147,7 @@ const Header = (props: PropsWithoutRef<HeaderProps>) => {
                         )}
 
                         <Group spacing="md" ml="xl">
-                            <LanguageToggle variant="default" size={30} />
+                            <LanguagePicker />
                             <ColorSchemeToggle variant="default" size={30} />
                         </Group>
                     </Group>

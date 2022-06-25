@@ -5,8 +5,7 @@ import {
     ActionIconProps,
     createStyles,
     Tooltip,
-    useMantineColorScheme,
-    useMantineTheme
+    useMantineColorScheme
 } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { useTranslations } from 'next-intl';
@@ -23,11 +22,10 @@ const useColorSchemeToggleStyles = createStyles(() => ({
 const ColorSchemeToggle = (props: PropsWithoutRef<ColorSchemeToggleProps>) => {
     const { className, onClick, ...rest } = props;
 
-    const theme = useMantineTheme();
-    const isMobile = useMediaQuery(`(max-width: ${theme.breakpoints.sm}px)`);
-
     const { colorScheme, toggleColorScheme } = useMantineColorScheme();
-    const { classes, cx } = useColorSchemeToggleStyles();
+    const { classes, cx, theme } = useColorSchemeToggleStyles();
+
+    const isMobile = useMediaQuery(`(max-width: ${theme.breakpoints.sm}px)`);
     const t = useTranslations('shared');
 
     const Icon = colorScheme === 'dark' ? BiSun : BiMoon;

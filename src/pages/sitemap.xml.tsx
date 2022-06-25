@@ -1,6 +1,6 @@
 import type { GetServerSideProps } from 'next';
 
-import { SitemapStream, SitemapItem, EnumChangefreq } from 'sitemap';
+import { EnumChangefreq, SitemapItem, SitemapStream } from 'sitemap';
 
 import { HeaderName, HttpStatus, MimeType } from 'shared/constants';
 import { getBaseUrl } from 'shared/utils/url';

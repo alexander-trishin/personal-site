@@ -42,6 +42,11 @@
         "message": "Message",
         "submit": "Submit"
     },
+    "i18n": {
+        "select-language": "Select a language",
+        "en": "English",
+        "ru": "Russian"
+    },
     "internal-server-error": {
         "title": "500 Internal Server Error",
         "heading": "Something bad just happened...",
