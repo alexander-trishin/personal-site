@@ -5,8 +5,9 @@ import { useTranslations } from 'next-intl';
 import { PropsWithoutRef, useEffect, useState } from 'react';
 
 import useStyles from 'client/assets/styles/pages/home';
-import { Footer, Header, SearchEngineOptimization } from 'client/components';
+import { SearchEngineOptimization } from 'client/components';
 import { getMessages } from 'client/i18n';
+import { Footer, Header } from 'client/pages';
 
 type IndexPageProps = {
     millisecondsToRelease: number;
