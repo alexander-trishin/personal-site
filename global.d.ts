@@ -8,12 +8,13 @@ declare namespace NodeJS {
 
         readonly BASE_URL: string;
 
-        readonly EMAIL_USER: string;
-        readonly EMAIL_PASSWORD: string;
+        readonly EMAIL_TRANSPORT_USER: string;
+        readonly EMAIL_TRANSPORT_PASSWORD: string;
 
         readonly LOGFLARE_API_KEY: string;
         readonly LOGFLARE_SOURCE_TOKEN: string;
 
+        readonly NEXT_PUBLIC_AUTHOR_EMAIL: string;
         readonly NEXT_PUBLIC_PACKAGE_VERSION: string;
 
         readonly SECURE_ENCRYPTION: string;

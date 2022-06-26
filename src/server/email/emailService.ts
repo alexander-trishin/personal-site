@@ -9,12 +9,12 @@ export const sendEmail = async (options: SendEmailOptions) => {
     const transport = createTransport({
         service: 'Mail.ru',
         auth: {
-            user: process.env.EMAIL_USER,
-            pass: process.env.EMAIL_PASSWORD
+            user: process.env.EMAIL_TRANSPORT_USER,
+            pass: process.env.EMAIL_TRANSPORT_PASSWORD
         }
     });
 
-    const { from = process.env.EMAIL_USER, ...mailOptions } = options;
+    const { from = process.env.EMAIL_TRANSPORT_USER, ...mailOptions } = options;
 
     await transport.sendMail({
         ...mailOptions,

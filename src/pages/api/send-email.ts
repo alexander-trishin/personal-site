@@ -21,7 +21,7 @@ const controller = createController(server => {
         } = await postSchema.parseAsync(request);
 
         await sendEmail({
-            to: 'Alexander_Trishin@mail.ru',
+            to: process.env.NEXT_PUBLIC_AUTHOR_EMAIL,
             subject,
             html: `<div><p>From: ${
                 name ? `<${name}> ` : ''
