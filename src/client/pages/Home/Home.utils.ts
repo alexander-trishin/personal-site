@@ -1,8 +1,7 @@
 import { NotificationProps, showNotification } from '@mantine/notifications';
-import ky from 'ky-universal';
 import { useState } from 'react';
 
-import { getBaseUrl } from 'shared/utils/url';
+import { getCsrfToken, postSendEmail } from 'shared/requests';
 
 import { ContactData } from './Contact.types';
 
@@ -14,13 +13,15 @@ const submitNotificationOptions: Partial<NotificationProps> = {
 export const useContactForm = (): [typeof handleSubmit, typeof isSubmitting] => {
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const handleSubmit = async (json: ContactData) => {
+    const handleSubmit = async (values: ContactData) => {
         setIsSubmitting(true);
 
         try {
-            await ky.post('/api/send-email', {
-                prefixUrl: getBaseUrl(),
-                json
+            const { csrfToken } = await getCsrfToken();
+
+            await postSendEmail({
+                ...values,
+                csrfToken
             });
 
             showNotification({

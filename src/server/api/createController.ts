@@ -17,7 +17,7 @@ const onError: ErrorHandler<NextApiRequest, NextApiResponse<ProblemDetails>> = (
     if (error instanceof ZodError) {
         response.status(HttpStatus.Code400BadRequest).json({
             message: 'One or more validation errors occurred',
-            errors: error.issues
+            errors: error.issues?.map(({ code, path, message }) => ({ code, path, message }))
         });
 
         return;

@@ -21,6 +21,7 @@ export const enum HeaderName {
 export const enum HttpMethod {
     Get = 'GET',
     Head = 'HEAD',
+    Options = 'OPTIONS',
     Post = 'POST',
     Put = 'PUT',
     Patch = 'PATCH',

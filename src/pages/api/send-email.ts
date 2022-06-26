@@ -2,6 +2,7 @@ import { z } from 'zod';
 
 import { createController, HttpAction } from 'server/api';
 import { sendEmail } from 'server/email';
+import { validateCsrfTokenMiddleware } from 'server/middleware';
 import { HttpStatus } from 'shared/constants';
 import { trim } from 'shared/utils/string';
 
@@ -31,7 +32,7 @@ const controller = createController(server => {
         response.status(HttpStatus.Code204NoContent).end();
     };
 
-    server.post(postHandler);
+    server.use(validateCsrfTokenMiddleware).post(postHandler);
 });
 
 export default controller;
