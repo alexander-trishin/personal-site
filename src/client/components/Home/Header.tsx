@@ -69,9 +69,6 @@ const useHeaderStyles = createStyles(
             inset: 0,
             top: headerHeight,
 
-            borderTopRightRadius: 0,
-            borderTopLeftRadius: 0,
-            borderTopWidth: 0,
             overflow: 'hidden'
         }
     })
