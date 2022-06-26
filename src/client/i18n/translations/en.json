@@ -10,6 +10,7 @@
         "register-question": "Already have an account? <button>Log In</button>"
     },
     "home-intro": {
+        "caption": "Home",
         "image": "Beautiful mountain view",
         "hello": "Hello, World.",
         "name": "I'm Alexander Trishin.",
