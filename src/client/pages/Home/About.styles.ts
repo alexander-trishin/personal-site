@@ -21,8 +21,11 @@ const useAboutStyles = createStyles(theme => ({
     },
 
     avatar: {
-        position: 'relative',
         borderRadius: '50%'
+    },
+
+    avatarPlaceholder: {
+        position: 'relative'
     },
 
     message: {

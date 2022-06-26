@@ -19,7 +19,12 @@ const About = forwardRef<HTMLDivElement, AboutProps>((props, ref) => {
             <Section.Header caption={t('caption')} message={t('caption-description')} mb="xl" />
 
             <Container className={cx(classes.container, classes.info)}>
-                <Avatar className={classes.avatar} size="xl" my="xl">
+                <Avatar
+                    className={classes.avatar}
+                    classNames={{ placeholder: classes.avatarPlaceholder }}
+                    size="xl"
+                    my="xl"
+                >
                     <Image
                         src="/static/images/home/author.jpg"
                         alt={t('author-avatar')}

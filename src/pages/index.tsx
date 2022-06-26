@@ -7,7 +7,8 @@ import { PropsWithoutRef, useEffect, useState } from 'react';
 import useStyles from 'client/assets/styles/pages/home';
 import { SearchEngineOptimization } from 'client/components';
 import { getMessages } from 'client/i18n';
-import { Footer, Header } from 'client/pages';
+import Footer from 'client/pages/Home/Footer';
+import Header from 'client/pages/Home/Header';
 
 type IndexPageProps = {
     millisecondsToRelease: number;

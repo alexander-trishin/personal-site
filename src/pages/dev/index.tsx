@@ -1,7 +1,11 @@
 import { GetStaticProps } from 'next';
+import dynamic from 'next/dynamic';
 
 import { getMessages } from 'client/i18n';
-import { Home } from 'client/pages';
+
+const Home = dynamic(() => import('client/pages/Home/Home'), {
+    ssr: process.env.NODE_ENV !== 'production'
+});
 
 const Dev = () => {
     return <Home />;
