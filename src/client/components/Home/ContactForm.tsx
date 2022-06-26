@@ -6,7 +6,9 @@ import { z } from 'zod';
 
 import { trim } from 'shared/utils/string';
 
-type ContactFormProps = Omit<BoxProps<'form'>, 'component' | 'onSubmit'>;
+import { ContactData, ContactFormBaseProps } from './Contact.types';
+
+type ContactFormProps = Omit<BoxProps<'form'>, 'component' | 'onSubmit'> & ContactFormBaseProps;
 
 const createSchema = (t: ReturnType<typeof useTranslations>) => {
     return z.object({
@@ -15,7 +17,7 @@ const createSchema = (t: ReturnType<typeof useTranslations>) => {
             trim,
             z
                 .string()
-                .min(1, t('required'))
+                .min(5, t('required'))
                 .max(64, t('max', { limit: 64 }))
                 .email(t('invalid'))
         ),
@@ -50,10 +52,12 @@ const inputStyles: TextInputProps['styles'] = {
 };
 
 const ContactForm = (props: PropsWithoutRef<ContactFormProps>) => {
+    const { isSubmitting: isLoading, onSubmit, ...rest } = props;
+
     const t = useTranslations('home-contact-form');
     const tv = useTranslations('validation');
 
-    const form = useForm({
+    const form = useForm<ContactData>({
         schema: zodResolver(createSchema(tv)),
         initialValues: {
             name: '',
@@ -63,14 +67,20 @@ const ContactForm = (props: PropsWithoutRef<ContactFormProps>) => {
         }
     });
 
-    const handleSubmit = form.onSubmit(() => {});
+    const handleSubmit = form.onSubmit(({ name, ...values }) => {
+        onSubmit?.({
+            ...values,
+            ...(name && { name })
+        });
+    });
 
     return (
-        <Box {...props} component="form" onSubmit={handleSubmit}>
+        <Box {...rest} component="form" onSubmit={handleSubmit}>
             <TextInput
                 {...form.getInputProps('name')}
                 styles={inputStyles}
                 placeholder={t('name')}
+                disabled={isLoading}
                 mb="xs"
             />
 
@@ -78,6 +88,7 @@ const ContactForm = (props: PropsWithoutRef<ContactFormProps>) => {
                 {...form.getInputProps('email')}
                 styles={inputStyles}
                 placeholder={t('email')}
+                disabled={isLoading}
                 mb="xs"
             />
 
@@ -85,6 +96,7 @@ const ContactForm = (props: PropsWithoutRef<ContactFormProps>) => {
                 {...form.getInputProps('subject')}
                 styles={inputStyles}
                 placeholder={t('subject')}
+                disabled={isLoading}
                 mb="xs"
             />
 
@@ -93,10 +105,11 @@ const ContactForm = (props: PropsWithoutRef<ContactFormProps>) => {
                 styles={inputStyles}
                 minRows={5}
                 placeholder={t('message')}
+                disabled={isLoading}
                 mb="xl"
             />
 
-            <Button type="submit" radius="xs" size="md" uppercase fullWidth>
+            <Button type="submit" radius="xs" size="md" uppercase fullWidth loading={isLoading}>
                 {t('submit')}
             </Button>
         </Box>

@@ -3,12 +3,13 @@ import { useTranslations } from 'next-intl';
 import dynamic from 'next/dynamic';
 import { ComponentProps, forwardRef } from 'react';
 
+import { ContactFormBaseProps } from './Contact.types';
 import ContactForm from './ContactForm';
 import Section from './Section';
 
 const PersonalEmailImage = dynamic(() => import('client/assets/svg/PersonalEmail'));
 
-type ContactProps = ComponentProps<typeof Section>;
+type ContactProps = Omit<ComponentProps<typeof Section>, 'onSubmit'> & ContactFormBaseProps;
 
 const useContactStyles = createStyles(theme => ({
     container: {
@@ -35,7 +36,7 @@ const useContactStyles = createStyles(theme => ({
 }));
 
 const Contact = forwardRef<HTMLDivElement, ContactProps>((props, ref) => {
-    const { ...rest } = props;
+    const { isSubmitting: isLoading, onSubmit, ...rest } = props;
 
     const { classes } = useContactStyles();
     const t = useTranslations('home-contact');
@@ -50,7 +51,11 @@ const Contact = forwardRef<HTMLDivElement, ContactProps>((props, ref) => {
                         <PersonalEmailImage />
                     </Grid.Col>
                     <Grid.Col xs={12} sm={7}>
-                        <ContactForm className={classes.form} />
+                        <ContactForm
+                            className={classes.form}
+                            isSubmitting={isLoading}
+                            onSubmit={onSubmit}
+                        />
                     </Grid.Col>
                 </Grid>
             </Container>
