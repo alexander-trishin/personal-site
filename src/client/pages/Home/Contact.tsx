@@ -36,7 +36,7 @@ const useContactStyles = createStyles(theme => ({
 }));
 
 const Contact = forwardRef<HTMLDivElement, ContactProps>((props, ref) => {
-    const { isSubmitting: isLoading, onSubmit, ...rest } = props;
+    const { isSubmitting, onSubmit, ...rest } = props;
 
     const { classes } = useContactStyles();
     const t = useTranslations('home-contact');
@@ -53,7 +53,7 @@ const Contact = forwardRef<HTMLDivElement, ContactProps>((props, ref) => {
                     <Grid.Col xs={12} sm={7}>
                         <ContactForm
                             className={classes.form}
-                            isSubmitting={isLoading}
+                            isSubmitting={isSubmitting}
                             onSubmit={onSubmit}
                         />
                     </Grid.Col>

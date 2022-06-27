@@ -27,10 +27,10 @@
         "author-message": "Hey, I'm Alex. I am a software engineer, currently living in Minsk, Belarus. I like building things and learn something new every day. In my free time I like: read, travel, swim, listen to music and play electric guitar.",
         "card-projects-caption": "Projects (planned)",
         "card-projects-message": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque inventore autem, quas ipsam quis et laboriosam vero ipsa repellendus atque",
-        "card-photos-caption": "Photos (planned)",
-        "card-photos-message": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque inventore autem, quas ipsam quis et laboriosam vero ipsa repellendus atque",
         "card-blog-caption": "Blog (planned)",
-        "card-blog-message": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque inventore autem, quas ipsam quis et laboriosam vero ipsa repellendus atque"
+        "card-blog-message": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque inventore autem, quas ipsam quis et laboriosam vero ipsa repellendus atque",
+        "card-photos-caption": "Photos (planned)",
+        "card-photos-message": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque inventore autem, quas ipsam quis et laboriosam vero ipsa repellendus atque"
     },
     "home-contact": {
         "caption": "Contact",
@@ -41,7 +41,9 @@
         "email": "Email",
         "subject": "Subject",
         "message": "Message",
-        "submit": "Submit"
+        "submit": "Submit",
+        "submit-success": "Your email was successfully sent! 😎",
+        "submit-failure": "Sorry, we were unable to send your email. 😔"
     },
     "i18n": {
         "select-language": "Select a language",

@@ -43,14 +43,14 @@ const About = forwardRef<HTMLDivElement, AboutProps>((props, ref) => {
                     message={t('card-projects-message')}
                 />
                 <AboutCard
-                    icon={TbPhoto}
-                    caption={t('card-photos-caption')}
-                    message={t('card-photos-message')}
-                />
-                <AboutCard
                     icon={TbFileText}
                     caption={t('card-blog-caption')}
                     message={t('card-blog-message')}
+                />
+                <AboutCard
+                    icon={TbPhoto}
+                    caption={t('card-photos-caption')}
+                    message={t('card-photos-message')}
                 />
             </Container>
         </Section>

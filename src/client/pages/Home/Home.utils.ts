@@ -1,45 +1,46 @@
 import { NotificationProps, showNotification } from '@mantine/notifications';
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
 import { getCsrfToken, postSendEmail } from 'shared/requests';
 
 import { ContactData } from './Contact.types';
 
-const submitNotificationOptions: Partial<NotificationProps> = {
-    id: 'submit-contact-form',
-    title: 'Contact'
-};
-
 export const useContactForm = (): [typeof handleSubmit, typeof isSubmitting] => {
+    const t = useTranslations('home-contact-form');
+
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const handleSubmit = async (values: ContactData) => {
         setIsSubmitting(true);
 
+        const notify = (
+            color: NotificationProps['color'],
+            message: NotificationProps['message']
+        ) => {
+            const { name, email } = values;
+
+            showNotification({
+                id: 'contact-form-submitted',
+                title: name ?? email,
+                color,
+                message
+            });
+        };
+
         try {
             const { csrfToken } = await getCsrfToken();
 
-            await postSendEmail({
-                ...values,
-                csrfToken
-            });
+            await postSendEmail({ ...values, csrfToken });
 
-            showNotification({
-                ...submitNotificationOptions,
-                color: 'green',
-                message: 'An email was successfully sent!'
-            });
+            notify('green', t('submit-success'));
         } catch (error) {
-            console.log(error);
+            notify('red', t('submit-failure'));
 
-            showNotification({
-                ...submitNotificationOptions,
-                color: 'red',
-                message: 'Failed to send an email.'
-            });
+            throw error;
+        } finally {
+            setIsSubmitting(false);
         }
-
-        setIsSubmitting(false);
     };
 
     return [handleSubmit, isSubmitting];

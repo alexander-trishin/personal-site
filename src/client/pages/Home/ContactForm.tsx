@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl';
 import { PropsWithoutRef } from 'react';
 import { z } from 'zod';
 
+import { useFormTranslationFix } from 'client/hooks';
 import { trim } from 'shared/utils/string';
 
 import { ContactData, ContactFormBaseProps } from './Contact.types';
@@ -67,11 +68,23 @@ const ContactForm = (props: PropsWithoutRef<ContactFormProps>) => {
         }
     });
 
-    const handleSubmit = form.onSubmit(({ name, ...values }) => {
-        onSubmit?.({
-            ...values,
-            ...(name && { name })
-        });
+    useFormTranslationFix(form, tv);
+
+    const handleSubmit = form.onSubmit(async ({ name, ...values }) => {
+        try {
+            const handle = onSubmit?.({
+                ...values,
+                ...(name && { name })
+            });
+
+            if (handle instanceof Promise) {
+                await handle;
+            }
+
+            form.reset();
+        } catch (error) {
+            // Do nothing
+        }
     });
 
     return (

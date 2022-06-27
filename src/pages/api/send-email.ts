@@ -24,9 +24,7 @@ const controller = createController(server => {
         await sendEmail({
             to: process.env.NEXT_PUBLIC_AUTHOR_EMAIL,
             subject,
-            html: `<div><p>From: ${
-                name ? `<${name}> ` : ''
-            }${email}</p><br /><p>${message}</p></div>`
+            html: `<div><p>From: ${name ? `<${name}> ` : ''}${email}</p><p>${message}</p></div>`
         });
 
         response.status(HttpStatus.Code204NoContent).end();

@@ -7,5 +7,5 @@ export type ContactData = {
 
 export type ContactFormBaseProps = {
     isSubmitting?: boolean;
-    onSubmit?: (values: ContactData) => void;
+    onSubmit?: (values: ContactData) => void | Promise<void>;
 };
