@@ -70,11 +70,12 @@ const ContactForm = (props: PropsWithoutRef<ContactFormProps>) => {
 
     useFormTranslationFix(form, tv);
 
-    const handleSubmit = form.onSubmit(async ({ name, ...values }) => {
+    const handleSubmit = form.onSubmit(async ({ name, subject, ...values }) => {
         try {
             const handle = onSubmit?.({
                 ...values,
-                ...(name && { name })
+                ...(name && { name }),
+                ...(subject && { subject })
             });
 
             if (handle instanceof Promise) {

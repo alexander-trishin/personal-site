@@ -1,12 +1,12 @@
 import type { ColorScheme } from '@mantine/core';
 
-import { Dispatch, useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import { BroadcastChannelName, LocalStorageKey } from 'client/constants';
 import { BroadcastHandler, useBroadcast } from 'client/hooks';
 import { isClientSide } from 'shared/utils/dom';
 
-const useColorScheme = (): [ColorScheme, Dispatch<ColorScheme>] => {
+const useColorScheme = () => {
     const [isRendered, setIsRendered] = useState(false);
     const [colorScheme, setColorScheme] = useState<ColorScheme>('light');
 
@@ -42,7 +42,7 @@ const useColorScheme = (): [ColorScheme, Dispatch<ColorScheme>] => {
         broadcast(nextColorScheme);
     };
 
-    return [colorScheme, toggleColorScheme];
+    return [colorScheme, toggleColorScheme] as const;
 };
 
 export default useColorScheme;

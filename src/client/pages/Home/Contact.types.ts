@@ -1,7 +1,7 @@
 export type ContactData = {
     name?: string;
     email: string;
-    subject: string;
+    subject?: string;
     message: string;
 };
 

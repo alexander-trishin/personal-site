@@ -6,7 +6,7 @@ import { getCsrfToken, postSendEmail } from 'shared/requests';
 
 import { ContactData } from './Contact.types';
 
-export const useContactForm = (): [typeof handleSubmit, typeof isSubmitting] => {
+export const useContactForm = () => {
     const t = useTranslations('home-contact-form');
 
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -14,12 +14,12 @@ export const useContactForm = (): [typeof handleSubmit, typeof isSubmitting] => 
     const handleSubmit = async (values: ContactData) => {
         setIsSubmitting(true);
 
+        const { name, email, subject } = values;
+
         const notify = (
             color: NotificationProps['color'],
             message: NotificationProps['message']
         ) => {
-            const { name, email } = values;
-
             showNotification({
                 id: 'contact-form-submitted',
                 title: name ?? email,
@@ -31,7 +31,11 @@ export const useContactForm = (): [typeof handleSubmit, typeof isSubmitting] => 
         try {
             const { csrfToken } = await getCsrfToken();
 
-            await postSendEmail({ ...values, csrfToken });
+            await postSendEmail({
+                ...values,
+                subject: subject ?? '[Personal site] Contact form message',
+                csrfToken
+            });
 
             notify('green', t('submit-success'));
         } catch (error) {
@@ -43,5 +47,5 @@ export const useContactForm = (): [typeof handleSubmit, typeof isSubmitting] => 
         }
     };
 
-    return [handleSubmit, isSubmitting];
+    return [handleSubmit, isSubmitting] as const;
 };
