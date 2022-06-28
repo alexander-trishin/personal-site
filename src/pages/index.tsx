@@ -90,6 +90,8 @@ const IndexPage = (props: PropsWithoutRef<IndexPageProps>) => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
+    const oneDayInSeconds = 24 * 60 * 60;
+
     return {
         props: {
             millisecondsToRelease: Math.max(
@@ -97,7 +99,8 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
                 0
             ),
             messages: await getMessages(locale, ['i18n', 'shared', 'social'])
-        }
+        },
+        revalidate: oneDayInSeconds
     };
 };
 
