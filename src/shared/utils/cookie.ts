@@ -7,7 +7,7 @@ import { isClientSide } from 'shared/utils/dom';
 
 export interface ICookieSerializerOptions extends CookieSerializeOptions {
     req?: Pick<IncomingMessage, 'headers'> & {
-        cookies?: Record<string, string>;
+        cookies?: Partial<Record<string, string>>;
     };
     res?: Pick<ServerResponse, 'getHeader' | 'setHeader'>;
 }
@@ -37,7 +37,7 @@ const serializeCookieValue = (value: unknown) => {
     return JSON.stringify(value);
 };
 
-export const getCookies = (options?: ICookieSerializerOptions): Record<string, string> => {
+export const getCookies = (options?: ICookieSerializerOptions): Partial<Record<string, string>> => {
     const { req: request } = options ?? {};
 
     if (!isClientSide()) {
@@ -55,7 +55,7 @@ export const getCookies = (options?: ICookieSerializerOptions): Record<string, s
         }
 
         return cookies;
-    }, {} as Record<string, string>);
+    }, {} as Partial<Record<string, string>>);
 };
 
 export const getCookie = <T>(key: string, options?: ICookieSerializerOptions) => {
@@ -94,7 +94,7 @@ export const setCookie = (key: string, value: unknown, options?: ICookieSerializ
         !setCookieHeader ? [cookieString] : setCookieHeader.concat(cookieString)
     );
 
-    const setCookieValue = (cookies: Record<string, string>) => {
+    const setCookieValue = (cookies: Partial<Record<string, string>>) => {
         if (value) {
             cookies[key] = serializeCookieValue(value);
         } else {
