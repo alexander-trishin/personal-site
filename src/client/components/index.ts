@@ -1,5 +1,6 @@
 export { BackToTopButton } from './BackToTopButton';
 export { ColorSchemeToggle } from './ColorSchemeToggle';
+export { ComingSoon } from './ComingSoon';
 export { Favicon, SearchEngineOptimization } from './Head';
 export { LanguagePicker } from './LanguagePicker';
 export { ErrorShell } from './Layout';

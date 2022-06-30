@@ -1,15 +1,6 @@
 import { createStyles } from '@mantine/core';
 
-const useStyles = createStyles(theme => ({
-    root: {
-        position: 'fixed',
-        inset: 0,
-
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between'
-    },
-
+const useComingSoonStyles = createStyles(theme => ({
     label: {
         textAlign: 'center',
         fontWeight: 900,
@@ -56,4 +47,4 @@ const useStyles = createStyles(theme => ({
     }
 }));
 
-export default useStyles;
+export default useComingSoonStyles;
