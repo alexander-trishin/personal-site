@@ -1,8 +1,8 @@
 import { Box, Center, Container, createStyles, Stack, Text, Title } from '@mantine/core';
 import { ComponentProps, PropsWithChildren, ReactNode } from 'react';
 
-import { ThemeOther } from 'client/theme';
 import { SearchEngineOptimization } from 'client/components';
+import { ThemeOther } from 'client/theme';
 
 type ErrorShellProps = Required<Pick<ComponentProps<typeof SearchEngineOptimization>, 'title'>> & {
     caption?: ReactNode;

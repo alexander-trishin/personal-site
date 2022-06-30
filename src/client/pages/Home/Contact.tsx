@@ -1,12 +1,15 @@
 import { Container, createStyles, Grid, Skeleton, Stack } from '@mantine/core';
 import { useTranslations } from 'next-intl';
-import { ComponentProps, forwardRef, lazy, Suspense } from 'react';
+import dynamic from 'next/dynamic';
+import { ComponentProps, forwardRef, Suspense } from 'react';
 
 import { ContactFormBaseProps } from './Contact.types';
 import Section from './Section';
 
-const ContactForm = lazy(() => import('./ContactForm'));
-const PersonalEmailImage = lazy(() => import('client/assets/svg/PersonalEmail'));
+const ContactForm = dynamic(() => import('./ContactForm'), { suspense: true });
+const PersonalEmailImage = dynamic(() => import('client/assets/svg/PersonalEmail'), {
+    suspense: true
+});
 
 type ContactProps = Omit<ComponentProps<typeof Section>, 'onSubmit'> & ContactFormBaseProps;
 

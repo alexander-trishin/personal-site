@@ -1,10 +1,19 @@
 import type { GetStaticProps } from 'next';
 
+import { LoadingOverlay } from '@mantine/core';
+import dynamic from 'next/dynamic';
+import { Suspense } from 'react';
+
 import { getMessages } from 'client/i18n';
-import { Home } from 'client/pages';
+
+const Home = dynamic(() => import('client/pages/Home/Home'), { suspense: true });
 
 const IndexPage = () => {
-    return <Home />;
+    return (
+        <Suspense fallback={<LoadingOverlay visible />}>
+            <Home />
+        </Suspense>
+    );
 };
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {

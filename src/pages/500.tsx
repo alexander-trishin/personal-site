@@ -1,13 +1,14 @@
-import { Button, Group } from '@mantine/core';
+import { Button, Group, Skeleton } from '@mantine/core';
 import { GetStaticProps } from 'next';
 import { useTranslations } from 'next-intl';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
+import { Suspense } from 'react';
 
 import { ErrorShell } from 'client/components';
 import { getMessages } from 'client/i18n';
 
-const ServerDownImage = dynamic(() => import('client/assets/svg/ServerDown'));
+const ServerDownImage = dynamic(() => import('client/assets/svg/ServerDown'), { suspense: true });
 
 const InternalServerErrorPage = () => {
     const router = useRouter();
@@ -18,7 +19,11 @@ const InternalServerErrorPage = () => {
     return (
         <ErrorShell
             title={t('title')}
-            image={<ServerDownImage />}
+            image={
+                <Suspense fallback={<Skeleton height={200} />}>
+                    <ServerDownImage />
+                </Suspense>
+            }
             caption={t('heading')}
             message={t('description')}
         >

@@ -1,14 +1,17 @@
 import type { GetStaticProps } from 'next';
 
-import { Button, Group } from '@mantine/core';
+import { Button, Group, Skeleton } from '@mantine/core';
 import { useTranslations } from 'next-intl';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
+import { Suspense } from 'react';
 
 import { ErrorShell } from 'client/components';
 import { getMessages } from 'client/i18n';
 
-const PageNotFoundImage = dynamic(() => import('client/assets/svg/PageNotFound'));
+const PageNotFoundImage = dynamic(() => import('client/assets/svg/PageNotFound'), {
+    suspense: true
+});
 
 const NotFoundPage = () => {
     const t = useTranslations('not-found');
@@ -16,7 +19,11 @@ const NotFoundPage = () => {
     return (
         <ErrorShell
             title={t('title')}
-            image={<PageNotFoundImage />}
+            image={
+                <Suspense fallback={<Skeleton height={200} />}>
+                    <PageNotFoundImage />
+                </Suspense>
+            }
             caption={t('heading')}
             message={t('description')}
         >
