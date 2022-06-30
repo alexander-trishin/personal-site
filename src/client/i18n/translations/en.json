@@ -24,13 +24,13 @@
         "caption": "About",
         "caption-description": "Let me introduce myself.",
         "author-avatar": "Author's avatar",
-        "author-message": "Hey, I'm Alex. I am a software engineer, currently living in Minsk, Belarus. I like building things and learn something new every day. In my free time I like: read, travel, swim, listen to music and play electric guitar.",
+        "author-message": "Hey, this is Alex, a software engineer based in Russia. I enjoy creating things using the most modern technologies. On this site I would like to share my ideas, which have accumulated quite a lot. Hope you find some of my work interesting.",
         "card-projects-caption": "Projects (planned)",
-        "card-projects-message": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque inventore autem, quas ipsam quis et laboriosam vero ipsa repellendus atque",
+        "card-projects-message": "I have a lot of ideas for building various apps using integration with popular services (for example: Steam, Discord, Spotify, etc.).",
         "card-blog-caption": "Blog (planned)",
-        "card-blog-message": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque inventore autem, quas ipsam quis et laboriosam vero ipsa repellendus atque",
+        "card-blog-message": "I have quite a lot of experience in software development, so it's time to share some tips that will make life easier for any developer.",
         "card-photos-caption": "Photos (planned)",
-        "card-photos-message": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque inventore autem, quas ipsam quis et laboriosam vero ipsa repellendus atque"
+        "card-photos-message": "I love to travel and the camera is my irreplaceable companion. This is a collection of my works as a photographer."
     },
     "home-contact": {
         "caption": "Contact",
