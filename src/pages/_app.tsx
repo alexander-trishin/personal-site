@@ -8,7 +8,7 @@ import { useState } from 'react';
 import { Hydrate as ReactQueryHydrate, QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 
-import { Favicon } from 'client/components';
+import { Favicon, UmamiAnalytics } from 'client/components';
 import { useColorScheme } from 'client/hooks';
 import { mantineDefaultProps, mantineTheme } from 'client/theme';
 
@@ -63,6 +63,8 @@ const App = (props: AppProps) => {
                     </MantineProvider>
                 </ColorSchemeProvider>
             </NextIntlProvider>
+
+            <UmamiAnalytics />
         </>
     );
 };
