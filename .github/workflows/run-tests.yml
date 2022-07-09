@@ -19,6 +19,13 @@ jobs:
       fail-fast: true
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
+        include:
+          - os: ubuntu-latest
+            playwright-cache-path: "~/.cache/ms-playwright"
+          - os: macos-latest
+            playwright-cache-path: "~/Library/Caches/ms-playwright"
+          - os: windows-latest
+            playwright-cache-path: '%USERPROFILE%\AppData\Local\ms-playwright'
 
     name: ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
@@ -32,20 +39,7 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           cache: "yarn" # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#caching-packages-data
 
-      #      - name: Get yarn cache directory path
-      #        id: yarn-cache-dir-path
-      #        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
-
-      #      - name: Yarn cache action
-      #        uses: actions/cache@v3
-      #        id: yarn-cache
-      #        with:
-      #          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-      #          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-      #          restore-keys: ${{ runner.os }}-yarn-
-
       - name: Install dependencies
-        #        if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: yarn --immutable
 
       - name: Run linter
@@ -57,8 +51,33 @@ jobs:
       - name: Run tests
         run: yarn test
 
-      - name: Install e2e dependencies
+      - name: "[E2E] Get cache key"
+        id: playwright-version
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const fs = require('fs');
+            const util = require('util');
+            const packageJsonBuffer = await util.promisify(fs.readFile)('package.json');
+            const packageJson = JSON.parse(packageJsonBuffer.toString());
+            return packageJson.devDependencies['@playwright/test'];
+          result-encoding: string
+
+      - name: "[E2E] Cache dependencies"
+        uses: actions/cache@v3
+        id: playwright-cache
+        with:
+          path: ${{ matrix.playwright-cache-path }}
+          key: "${{ runner.os }}-playwright-${{ steps.playwright-version.outputs.result }}"
+          restore-keys: ${{ runner.os }}-playwright-
+
+      - name: "[E2E] Install dependencies"
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
         run: yarn playwright install --with-deps
 
-      - name: Run e2e tests
+      - name: "[E2E] Install dependencies (runtime only)"
+        if: steps.playwright-cache.outputs.cache-hit == 'true'
+        run: yarn playwright install-deps
+
+      - name: "[E2E] Run tests"
         run: yarn test:e2e
