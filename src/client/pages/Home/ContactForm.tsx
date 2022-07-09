@@ -11,32 +11,38 @@ import { ContactData, ContactFormBaseProps } from './Contact.types';
 
 type ContactFormProps = Omit<BoxProps<'form'>, 'component' | 'onSubmit'> & ContactFormBaseProps;
 
-const createSchema = (t: ReturnType<typeof useTranslations>) => {
-    return z.object({
-        name: z.optional(z.preprocess(trim, z.string().max(64, t('max', { limit: 64 })))),
-        email: z.preprocess(
-            trim,
-            z
-                .string()
-                .min(5, t('required'))
-                .max(64, t('max', { limit: 64 }))
-                .email(t('invalid'))
-        ),
-        subject: z.preprocess(
-            trim,
-            z
-                .string()
-                .min(1, t('required'))
-                .max(128, t('max', { limit: 128 }))
-        ),
-        message: z.preprocess(
-            trim,
-            z
-                .string()
-                .min(8, t('min', { limit: 8 }))
-                .max(2048, t('max', { limit: 2048 }))
-        )
-    });
+const useContactFormSchema = () => {
+    const t = useTranslations('validation');
+
+    const schema = zodResolver(
+        z.object({
+            name: z.optional(z.preprocess(trim, z.string().max(64, t('max', { limit: 64 })))),
+            email: z.preprocess(
+                trim,
+                z
+                    .string()
+                    .min(5, t('required'))
+                    .max(64, t('max', { limit: 64 }))
+                    .email(t('invalid'))
+            ),
+            subject: z.preprocess(
+                trim,
+                z
+                    .string()
+                    .min(1, t('required'))
+                    .max(128, t('max', { limit: 128 }))
+            ),
+            message: z.preprocess(
+                trim,
+                z
+                    .string()
+                    .min(8, t('min', { limit: 8 }))
+                    .max(2048, t('max', { limit: 2048 }))
+            )
+        })
+    );
+
+    return [schema, t] as const;
 };
 
 const inputStyles: TextInputProps['styles'] = {
@@ -56,10 +62,10 @@ const ContactForm = (props: PropsWithoutRef<ContactFormProps>) => {
     const { isSubmitting: isLoading, onSubmit, ...rest } = props;
 
     const t = useTranslations('home-contact-form');
-    const tv = useTranslations('validation');
+    const [schema, tv] = useContactFormSchema();
 
     const form = useForm<ContactData>({
-        schema: zodResolver(createSchema(tv)),
+        schema,
         initialValues: {
             name: '',
             email: '',
