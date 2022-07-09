@@ -17,6 +17,7 @@ declare namespace NodeJS {
         readonly NEXT_PUBLIC_ANALYTICS_UMAMI_ID: string;
         readonly NEXT_PUBLIC_ANALYTICS_UMAMI_URL: string;
         readonly NEXT_PUBLIC_AUTHOR_EMAIL: string;
+        readonly NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION: string;
         readonly NEXT_PUBLIC_PACKAGE_VERSION: string;
 
         readonly SECURE_ENCRYPTION: string;

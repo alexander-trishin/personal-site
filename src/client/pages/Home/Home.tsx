@@ -23,7 +23,7 @@ const Home = () => {
 
     return (
         <>
-            <SearchEngineOptimization title={t('shared.author')} />
+            <SearchEngineOptimization title={t('home.title')} description={t('home.description')} />
 
             <Header stackY={150} navLinks={links} />
 
