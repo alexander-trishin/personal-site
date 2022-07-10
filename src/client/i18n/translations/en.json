@@ -9,6 +9,10 @@
         "register": "Register",
         "register-question": "Already have an account? <button>Log In</button>"
     },
+    "home": {
+        "title": "Alexander Trishin",
+        "description": "Personal website by Alexander Trishin. Apps, photos, code, and more..."
+    },
     "home-intro": {
         "caption": "Home",
         "image": "Beautiful mountain view",

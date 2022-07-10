@@ -1,3 +1,4 @@
+export { UmamiAnalytics } from './Analytics';
 export { BackToTopButton } from './BackToTopButton';
 export { ColorSchemeToggle } from './ColorSchemeToggle';
 export { ComingSoon } from './ComingSoon';
