@@ -12,8 +12,8 @@ const utcDateToIsoString = (year: number, month: number, day: number) => {
 const StaticPages: Partial<SitemapItem>[] = [
     {
         url: '/',
-        changefreq: EnumChangefreq.WEEKLY,
-        lastmod: utcDateToIsoString(2022, 7, 1)
+        changefreq: EnumChangefreq.MONTHLY,
+        lastmod: utcDateToIsoString(2022, 7, 9)
     }
 ];
 
