@@ -2,7 +2,7 @@
 
 My personal website. Built using:
 
-- [Typescript 4.6](https://www.typescriptlang.org/)
+- [Typescript 4.7](https://www.typescriptlang.org/)
 - [Next.js 12.2](https://nextjs.org/)
 - [React.js 18](https://reactjs.org/)
 - [Mantine 4.2](https://mantine.dev/)
