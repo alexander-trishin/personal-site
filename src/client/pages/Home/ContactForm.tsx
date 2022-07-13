@@ -58,6 +58,17 @@ const inputStyles: TextInputProps['styles'] = {
     }
 };
 
+const getAosProps = (type: 'input' | 'button' = 'input') => ({
+    'data-aos': 'fade-left',
+    'data-aos-duration': 750,
+    ...(type === 'input' && {
+        errorProps: {
+            'data-aos': 'zoom-in',
+            'data-aos-duration': 300
+        }
+    })
+});
+
 const ContactForm = (props: PropsWithoutRef<ContactFormProps>) => {
     const { isSubmitting: isLoading, onSubmit, ...rest } = props;
 
@@ -102,6 +113,7 @@ const ContactForm = (props: PropsWithoutRef<ContactFormProps>) => {
                 placeholder={t('name')}
                 disabled={isLoading}
                 mb="xs"
+                {...getAosProps()}
             />
 
             <TextInput
@@ -110,6 +122,8 @@ const ContactForm = (props: PropsWithoutRef<ContactFormProps>) => {
                 placeholder={t('email')}
                 disabled={isLoading}
                 mb="xs"
+                {...getAosProps()}
+                data-aos-delay={100}
             />
 
             <TextInput
@@ -118,6 +132,8 @@ const ContactForm = (props: PropsWithoutRef<ContactFormProps>) => {
                 placeholder={t('subject')}
                 disabled={isLoading}
                 mb="xs"
+                {...getAosProps()}
+                data-aos-delay={200}
             />
 
             <Textarea
@@ -127,9 +143,21 @@ const ContactForm = (props: PropsWithoutRef<ContactFormProps>) => {
                 placeholder={t('message')}
                 disabled={isLoading}
                 mb="xl"
+                {...getAosProps()}
+                data-aos-delay={300}
             />
 
-            <Button type="submit" radius="xs" size="md" uppercase fullWidth loading={isLoading}>
+            <Button
+                type="submit"
+                radius="xs"
+                size="md"
+                uppercase
+                fullWidth
+                loading={isLoading}
+                {...getAosProps('button')}
+                data-aos-delay={400}
+                data-aos-offset={0}
+            >
                 {t('submit')}
             </Button>
         </Box>

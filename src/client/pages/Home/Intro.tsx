@@ -43,16 +43,27 @@ const Intro = forwardRef<HTMLDivElement, IntroProps>((props, ref) => {
                         align="center"
                         transform="uppercase"
                         className={classes.hello}
+                        data-aos="fade-up"
+                        data-aos-delay={100}
+                        data-aos-duration={500}
                     >
                         {t('hello')}
                     </Text>
 
-                    <Text component="h2" align="center" mb="sm" className={classes.name}>
+                    <Text
+                        component="h2"
+                        align="center"
+                        mb="sm"
+                        className={classes.name}
+                        data-aos="fade-up"
+                        data-aos-delay={150}
+                        data-aos-duration={500}
+                    >
                         {t('name')}
                     </Text>
 
                     <Text align="center" transform="uppercase" mb="xl" className={classes.position}>
-                        <Typewriter>
+                        <Typewriter startDelay={1200}>
                             <p>{t('position-1')}</p>
                             <p>{t('position-2')}</p>
                             <p>{t('position-3')}</p>
@@ -69,6 +80,9 @@ const Intro = forwardRef<HTMLDivElement, IntroProps>((props, ref) => {
                             rightIcon={<GoChevronDown />}
                             className={classes.button}
                             mt="xl"
+                            data-aos="zoom-out"
+                            data-aos-delay={600}
+                            data-aos-duration={500}
                         >
                             {t('more')}
                         </Button>
@@ -76,7 +90,13 @@ const Intro = forwardRef<HTMLDivElement, IntroProps>((props, ref) => {
                 </Stack>
             </Center>
 
-            <Social className={classes.social} />
+            <Social
+                className={classes.social}
+                data-aos="fade-down"
+                data-aos-delay={700}
+                data-aos-duration={500}
+                data-aos-offset={0}
+            />
         </Section>
     );
 });

@@ -1,4 +1,5 @@
 import { useTranslations } from 'next-intl';
+import { useEffect } from 'react';
 
 import { BackToTopButton, SearchEngineOptimization } from 'client/components';
 
@@ -10,6 +11,8 @@ import { useContactForm } from './Home.utils';
 import Intro from './Intro';
 import Main from './Main';
 
+import 'aos/dist/aos.css';
+
 const Home = () => {
     const t = useTranslations();
 
@@ -20,6 +23,19 @@ const Home = () => {
     ];
 
     const [handleSubmitContact, isContactSubmitting] = useContactForm();
+
+    useEffect(() => {
+        const initialize = async () => {
+            const aos = await import('aos');
+
+            aos.init({
+                once: true,
+                duration: 1000
+            });
+        };
+
+        initialize();
+    }, []);
 
     return (
         <>

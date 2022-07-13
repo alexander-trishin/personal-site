@@ -1,8 +1,8 @@
-import { Avatar, createStyles, Stack, Text } from '@mantine/core';
+import { Avatar, createStyles, Stack, StackProps, Text } from '@mantine/core';
 import { PropsWithoutRef } from 'react';
 import { IconType } from 'react-icons';
 
-type AboutCardProps = {
+type AboutCardProps = Omit<StackProps, 'align' | 'spacing'> & {
     icon: IconType;
     caption: string;
     message: string;
@@ -16,12 +16,12 @@ const useAboutCardStyles = createStyles(theme => ({
 }));
 
 const AboutCard = (props: PropsWithoutRef<AboutCardProps>) => {
-    const { icon: Icon, caption, message } = props;
+    const { icon: Icon, caption, message, ...rest } = props;
 
     const { classes } = useAboutCardStyles();
 
     return (
-        <Stack align="center" spacing={0}>
+        <Stack {...rest} align="center" spacing={0}>
             <Avatar color="primary" size="lg" radius="xl" mb="sm">
                 <Icon />
             </Avatar>
