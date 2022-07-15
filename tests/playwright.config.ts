@@ -16,6 +16,7 @@ const config: PlaywrightTestConfig = {
         }
     ],
     webServer: {
+        cwd: '..',
         command: 'yarn next start -p 4000',
         port: 4000,
         timeout: 15 * 1000,
@@ -25,7 +26,7 @@ const config: PlaywrightTestConfig = {
         baseURL: 'http://localhost:4000',
         locale: 'en'
     },
-    testDir: './tests/e2e'
+    testDir: './e2e'
 };
 
 export default config;

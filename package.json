@@ -13,8 +13,8 @@
         "build": "yarn db:generate && next build",
         "start": "cross-env NODE_ENV=production yarn dev",
         "lint": "yarn tsc && next lint",
-        "test": "jest",
-        "test:e2e": "playwright test",
+        "test": "jest --config=tests/jest.config.ts",
+        "test:e2e": "playwright test --config=tests/playwright.config.ts",
         "analyze": "cross-env ANALYZE=true yarn build && yarn source-map-explorer .next/static/chunks/**/*.js",
         "prepare": "husky install"
     },
