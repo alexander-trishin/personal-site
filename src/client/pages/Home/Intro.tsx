@@ -45,7 +45,7 @@ const Intro = forwardRef<HTMLDivElement, IntroProps>((props, ref) => {
                         className={classes.hello}
                         data-aos="fade-up"
                         data-aos-delay={100}
-                        data-aos-duration={500}
+                        data-aos-duration={200}
                     >
                         {t('hello')}
                     </Text>
@@ -57,7 +57,7 @@ const Intro = forwardRef<HTMLDivElement, IntroProps>((props, ref) => {
                         className={classes.name}
                         data-aos="fade-up"
                         data-aos-delay={150}
-                        data-aos-duration={500}
+                        data-aos-duration={300}
                     >
                         {t('name')}
                     </Text>
@@ -81,8 +81,8 @@ const Intro = forwardRef<HTMLDivElement, IntroProps>((props, ref) => {
                             className={classes.button}
                             mt="xl"
                             data-aos="zoom-out"
-                            data-aos-delay={600}
-                            data-aos-duration={500}
+                            data-aos-delay={400}
+                            data-aos-duration={750}
                         >
                             {t('more')}
                         </Button>
@@ -93,8 +93,8 @@ const Intro = forwardRef<HTMLDivElement, IntroProps>((props, ref) => {
             <Social
                 className={classes.social}
                 data-aos="fade-down"
-                data-aos-delay={700}
-                data-aos-duration={500}
+                data-aos-delay={500}
+                data-aos-duration={750}
                 data-aos-offset={0}
             />
         </Section>
