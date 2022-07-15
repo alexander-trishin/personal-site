@@ -8,7 +8,7 @@ datasource db {
 generator client {
     provider        = "prisma-client-js"
     previewFeatures = ["referentialIntegrity"]
-    output          = "../src/server/persistence/codegen/client"
+    output          = "./codegen/client"
 }
 
 model User {
