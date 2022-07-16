@@ -1,6 +1,6 @@
-type Messages = typeof import('./src/client/i18n/translations/en.json');
+type Messages = typeof import('../src/client/i18n/translations/en.json');
 
-declare interface IntlMessage extends Messages {}
+declare interface IntlMessages extends Messages {}
 
 declare namespace NodeJS {
     export interface ProcessEnv {
