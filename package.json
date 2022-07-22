@@ -1,6 +1,6 @@
 {
     "name": "personal-site",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "private": true,
     "scripts": {
         "env": "dotenv -e .env -e .env.local",
