@@ -45,7 +45,7 @@ const Intro = forwardRef<HTMLDivElement, IntroProps>((props, ref) => {
                         className={classes.hello}
                         data-aos="fade-up"
                         data-aos-delay={100}
-                        data-aos-duration={200}
+                        data-aos-duration={500}
                     >
                         {t('hello')}
                     </Text>
@@ -57,7 +57,7 @@ const Intro = forwardRef<HTMLDivElement, IntroProps>((props, ref) => {
                         className={classes.name}
                         data-aos="fade-up"
                         data-aos-delay={150}
-                        data-aos-duration={300}
+                        data-aos-duration={600}
                     >
                         {t('name')}
                     </Text>
