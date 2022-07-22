@@ -13,7 +13,7 @@ const StaticPages: Partial<SitemapItem>[] = [
     {
         url: '/',
         changefreq: EnumChangefreq.MONTHLY,
-        lastmod: utcDateToIsoString(2022, 7, 9)
+        lastmod: utcDateToIsoString(2022, 7, 22)
     }
 ];
 
