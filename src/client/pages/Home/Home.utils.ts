@@ -1,10 +1,44 @@
 import { NotificationProps, showNotification } from '@mantine/notifications';
 import { useTranslations } from 'next-intl';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { getCsrfToken, postSendEmail } from 'shared/requests';
+import { isClientSide } from 'shared/utils/dom';
 
 import { ContactData } from './Contact.types';
+
+export const useAos = () => {
+    const [isClientMounted, setIsClientMounted] = useState(false);
+
+    useEffect(() => {
+        if (isClientSide()) {
+            setIsClientMounted(true);
+        }
+    }, []);
+
+    useEffect(() => {
+        const initialize = async () => {
+            const aos = await import('aos');
+
+            aos.init({
+                once: true,
+                duration: 1000
+            });
+        };
+
+        if (isClientMounted) {
+            initialize();
+        }
+    }, [isClientMounted]);
+
+    const refreshAos = async () => {
+        const aos = await import('aos');
+
+        aos.refresh();
+    };
+
+    return [refreshAos] as const;
+};
 
 export const useContactForm = () => {
     const t = useTranslations('home-contact-form');

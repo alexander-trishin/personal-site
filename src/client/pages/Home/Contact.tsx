@@ -49,7 +49,7 @@ const Contact = forwardRef<HTMLDivElement, ContactProps>((props, ref) => {
 
             <Container px="xl" pt="xl" className={classes.container}>
                 <Grid grow align="center" justify="center" gutter="xl" mt="xl">
-                    <Grid.Col span={5} p="xl" className={classes.image}>
+                    <Grid.Col span={5} p="xl" className={classes.image} data-aos="fade-right">
                         <Suspense fallback={<Skeleton />}>
                             <PersonalEmailImage />
                         </Suspense>

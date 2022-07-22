@@ -12,7 +12,7 @@ import {
 } from '@mantine/core';
 import { useMediaQuery, useScrollLock, useWindowScroll } from '@mantine/hooks';
 import Link from 'next/link';
-import { PropsWithoutRef, useRef, useState } from 'react';
+import { MouseEventHandler, PropsWithoutRef, useRef, useState } from 'react';
 
 import { ColorSchemeToggle, LanguagePicker, Logo } from 'client/components';
 import { ZIndex } from 'client/constants';
@@ -24,6 +24,7 @@ type NavLink = {
 
 type HeaderProps = Omit<BoxProps<'header'>, 'component'> & {
     navLinks?: NavLink[];
+    onThemeToggle?: MouseEventHandler<HTMLButtonElement>;
     stackY?: number;
 };
 
@@ -92,7 +93,7 @@ const useSidebar = (isMobile?: boolean): [boolean, () => void] => {
 };
 
 const Header = (props: PropsWithoutRef<HeaderProps>) => {
-    const { className, children, navLinks = [], stackY, ...rest } = props;
+    const { className, children, navLinks = [], onThemeToggle, stackY, ...rest } = props;
 
     const headerRef = useRef<HTMLDivElement>(null);
     const [scroll] = useWindowScroll();
@@ -145,7 +146,11 @@ const Header = (props: PropsWithoutRef<HeaderProps>) => {
 
                         <Group spacing="md" ml="xl">
                             <LanguagePicker />
-                            <ColorSchemeToggle variant="default" size={30} />
+                            <ColorSchemeToggle
+                                variant="default"
+                                size={30}
+                                onClick={onThemeToggle}
+                            />
                         </Group>
                     </Group>
                 </Group>

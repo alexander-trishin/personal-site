@@ -6,11 +6,15 @@ import About from './About';
 import Contact from './Contact';
 import FooterParallax from './FooterParallax';
 import Header from './Header';
-import { useContactForm } from './Home.utils';
+import { useAos, useContactForm } from './Home.utils';
 import Intro from './Intro';
 import Main from './Main';
 
+import 'aos/dist/aos.css';
+
 const Home = () => {
+    const [refreshAos] = useAos();
+
     const t = useTranslations();
 
     const links = [
@@ -25,7 +29,7 @@ const Home = () => {
         <>
             <SearchEngineOptimization title={t('home.title')} description={t('home.description')} />
 
-            <Header stackY={150} navLinks={links} />
+            <Header stackY={150} navLinks={links} onThemeToggle={refreshAos} />
 
             <Main>
                 <Intro id="intro" showMoreHref="#about" />

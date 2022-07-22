@@ -8,7 +8,7 @@ const IndexPage = () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
-    const namespaces: Array<keyof IntlMessage> = [
+    const namespaces: Array<keyof IntlMessages> = [
         'home',
         'home-about',
         'home-contact',

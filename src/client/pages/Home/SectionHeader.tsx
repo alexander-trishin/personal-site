@@ -40,7 +40,7 @@ const SectionHeader = (props: PropsWithoutRef<SectionHeaderProps>) => {
     const { classes, cx } = useSectionHeaderStyles();
 
     return (
-        <Box {...rest}>
+        <Box data-aos="fade-up" {...rest}>
             {caption && (
                 <Text
                     component="h3"

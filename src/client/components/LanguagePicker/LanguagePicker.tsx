@@ -32,7 +32,14 @@ const LanguagePicker = () => {
     const LocaleIcon = localeIconMap[locale as keyof typeof localeIconMap];
 
     const items = Object.entries(localeIconMap).map(([key, Icon]) => (
-        <Menu.Item key={key} component={MenuLink} href={asPath} locale={key} title={t(key)} p="xs">
+        <Menu.Item
+            key={key}
+            component={MenuLink}
+            href={asPath}
+            locale={key}
+            title={t(key as keyof typeof localeIconMap)}
+            p="xs"
+        >
             <Icon height="100%" width="100%" />
         </Menu.Item>
     ));

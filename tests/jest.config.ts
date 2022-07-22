@@ -8,8 +8,10 @@ const createJestConfig = nextJest({
 const customJestConfig: JestConfig.InitialOptions = {
     preset: 'ts-jest',
 
+    rootDir: '..',
+
     testEnvironment: 'jest-environment-jsdom',
-    testPathIgnorePatterns: ['./tests/e2e']
+    testPathIgnorePatterns: ['e2e']
 };
 
 export default createJestConfig(customJestConfig);

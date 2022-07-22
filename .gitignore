@@ -24,8 +24,8 @@ node_modules
 # development
 /certificates
 
-# database
-/src/server/persistence/codegen
+# generated code
+codegen
 
 # misc
 .DS_Store
