@@ -3,7 +3,7 @@ const getMessages = async (locale?: string, namespaces: (keyof IntlMessages)[] =
         return {};
     }
 
-    const json = await import(`client/i18n/translations/${locale}.json`);
+    const json = await import(`shared/i18n/translations/${locale}.json`);
     const messages: IntlMessages = json.default;
 
     if (namespaces.length === 0) {

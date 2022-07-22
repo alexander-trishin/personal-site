@@ -1,7 +1,7 @@
 import type { GetStaticProps } from 'next';
 
-import { getMessages } from 'client/i18n';
 import { Home } from 'client/pages';
+import { getMessages } from 'shared/i18n';
 
 const IndexPage = () => {
     return <Home />;

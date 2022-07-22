@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import { Suspense } from 'react';
 
 import { ErrorShell } from 'client/components';
-import { getMessages } from 'client/i18n';
+import { getMessages } from 'shared/i18n';
 
 const ServerDownImage = dynamic(() => import('client/assets/svg/ServerDown'), { suspense: true });
 
