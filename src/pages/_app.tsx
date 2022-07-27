@@ -10,7 +10,7 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 
 import { Favicon, UmamiAnalytics } from 'client/components';
 import { useColorScheme } from 'client/hooks';
-import { mantineDefaultProps, mantineTheme } from 'client/theme';
+import { mantineTheme, mantineThemeCache } from 'shared/theme';
 
 import 'client/assets/styles/global.css';
 
@@ -46,7 +46,7 @@ const App = (props: AppProps) => {
             <NextIntlProvider messages={messages}>
                 <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={setColorScheme}>
                     <MantineProvider
-                        defaultProps={mantineDefaultProps}
+                        emotionCache={mantineThemeCache}
                         theme={{ ...mantineTheme, colorScheme }}
                         withCSSVariables
                         withNormalizeCSS

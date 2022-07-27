@@ -1,8 +1,8 @@
-import { ActionIcon, ActionIconProps } from '@mantine/core';
+import { ActionIcon } from '@mantine/core';
 import Link from 'next/link';
-import { forwardRef } from 'react';
+import { ComponentProps, forwardRef } from 'react';
 
-type MenuLinkProps = Omit<ActionIconProps<'a'>, 'component' | 'lang' | 'size'> & {
+type MenuLinkProps = Omit<ComponentProps<typeof ActionIcon<'a'>>, 'component' | 'lang' | 'size'> & {
     href: string;
     locale?: string;
 };

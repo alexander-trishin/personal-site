@@ -1,15 +1,12 @@
 import { createStyles } from '@mantine/core';
 
-import { ThemeOther } from 'client/theme';
-
 import { HomeZIndex } from './Home.constants';
 
 const useIntroStyles = createStyles(theme => {
     const darkMode = theme.colorScheme === 'dark';
-    const other = theme.other as ThemeOther;
 
-    const primaryColor = other.fn.getPrimaryColor(theme);
-    const socialSize = other.fn.clamp(26, 32);
+    const primaryColor = theme.other.fn.getPrimaryColor(theme);
+    const socialSize = theme.other.fn.clamp(26, 32);
 
     return {
         root: {
@@ -54,7 +51,7 @@ const useIntroStyles = createStyles(theme => {
         hello: {
             fontFamily: theme.headings.fontFamily,
             fontWeight: 700,
-            fontSize: other.fn.clamp(15, 23),
+            fontSize: theme.other.fn.clamp(15, 23),
             letterSpacing: 2,
 
             color: primaryColor,
@@ -71,7 +68,7 @@ const useIntroStyles = createStyles(theme => {
         },
 
         position: {
-            fontSize: other.fn.clamp(14, 18),
+            fontSize: theme.other.fn.clamp(14, 18),
             letterSpacing: 2,
 
             margin: 0

@@ -1,17 +1,11 @@
-import type { MouseEventHandler, PropsWithoutRef } from 'react';
+import type { ComponentProps, MouseEventHandler, PropsWithoutRef } from 'react';
 
-import {
-    ActionIcon,
-    ActionIconProps,
-    createStyles,
-    Tooltip,
-    useMantineColorScheme
-} from '@mantine/core';
+import { ActionIcon, createStyles, Tooltip, useMantineColorScheme } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { useTranslations } from 'next-intl';
 import { BiSun, BiMoon } from 'react-icons/bi';
 
-type ColorSchemeToggleProps = ActionIconProps<'button'>;
+type ColorSchemeToggleProps = ComponentProps<typeof ActionIcon<'button'>>;
 
 const useColorSchemeToggleStyles = createStyles(() => ({
     root: {

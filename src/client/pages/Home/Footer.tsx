@@ -1,17 +1,13 @@
-import { Box, BoxProps, Container, createStyles, Text } from '@mantine/core';
+import { Box, Container, createStyles, Text } from '@mantine/core';
 import { useTranslations } from 'next-intl';
-import { forwardRef } from 'react';
-
-import { ThemeOther } from 'client/theme';
+import { ComponentProps, forwardRef } from 'react';
 
 import Social from './Social';
 
-type FooterProps = Omit<BoxProps<'footer'>, 'component'>;
+type FooterProps = Omit<ComponentProps<typeof Box<'footer'>>, 'component'>;
 
 const useFooterStyles = createStyles(theme => {
-    const other = theme.other as ThemeOther;
-
-    const socialSize = other.fn.clamp(24, 28);
+    const socialSize = theme.other.fn.clamp(24, 28);
 
     return {
         container: {
@@ -43,7 +39,7 @@ const useFooterStyles = createStyles(theme => {
         },
 
         copyright: {
-            fontSize: other.fn.clamp(14, 16),
+            fontSize: theme.other.fn.clamp(14, 16),
 
             display: 'flex',
             flexDirection: 'column-reverse',

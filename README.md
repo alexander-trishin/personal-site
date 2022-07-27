@@ -5,7 +5,7 @@ My personal website. Built using:
 - [Typescript 4.7](https://www.typescriptlang.org/)
 - [Next.js 12.2](https://nextjs.org/)
 - [React.js 18](https://reactjs.org/)
-- [Mantine 4.2](https://mantine.dev/)
+- [Mantine 5](https://mantine.dev/)
 
 ## Getting started
 

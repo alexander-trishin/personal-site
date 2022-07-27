@@ -1,6 +1,5 @@
 import {
     Box,
-    BoxProps,
     Burger,
     Button,
     Container,
@@ -12,7 +11,7 @@ import {
 } from '@mantine/core';
 import { useMediaQuery, useScrollLock, useWindowScroll } from '@mantine/hooks';
 import Link from 'next/link';
-import { MouseEventHandler, PropsWithoutRef, useRef, useState } from 'react';
+import { ComponentProps, MouseEventHandler, PropsWithoutRef, useRef, useState } from 'react';
 
 import { ColorSchemeToggle, LanguagePicker, Logo } from 'client/components';
 import { ZIndex } from 'client/constants';
@@ -22,7 +21,7 @@ type NavLink = {
     href: string;
 };
 
-type HeaderProps = Omit<BoxProps<'header'>, 'component'> & {
+type HeaderProps = Omit<ComponentProps<typeof Box<'header'>>, 'component'> & {
     navLinks?: NavLink[];
     onThemeToggle?: MouseEventHandler<HTMLButtonElement>;
     stackY?: number;
@@ -108,24 +107,18 @@ const Header = (props: PropsWithoutRef<HeaderProps>) => {
 
     const [isSidebarOpen, toggleSidebar] = useSidebar(isMobile);
 
-    const links = navLinks.map(({ label, href }) => {
-        const handleClick = () => {
-            toggleSidebar();
-        };
-
-        return (
-            <Link key={label} href={href} shallow replace passHref>
-                <Button
-                    className={classes.navLink}
-                    variant="default"
-                    component="a"
-                    onClick={handleClick}
-                >
-                    {label}
-                </Button>
-            </Link>
-        );
-    });
+    const links = navLinks.map(({ label, href }) => (
+        <Link key={label} href={href} shallow replace passHref>
+            <Button
+                component="a"
+                variant="default"
+                onClick={toggleSidebar}
+                className={classes.navLink}
+            >
+                {label}
+            </Button>
+        </Link>
+    ));
 
     return (
         <Box {...rest} component="header" ref={headerRef} className={cx(classes.root, className)}>

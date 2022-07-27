@@ -45,24 +45,20 @@ const LanguagePicker = () => {
     ));
 
     return (
-        <Menu
-            control={
-                <ActionIcon className={classes.control} variant="default">
+        <Menu transition="pop" position="bottom" width={50} closeOnItemClick withArrow withinPortal>
+            <Menu.Target>
+                <ActionIcon
+                    className={classes.control}
+                    variant="default"
+                    title={t('select-language')}
+                >
                     <Group spacing={3}>
                         <LocaleIcon height={16} width={16} />
                         <VscChevronDown size={16} />
                     </Group>
                 </ActionIcon>
-            }
-            menuButtonLabel={t('select-language')}
-            size={50}
-            transition="pop"
-            placement="end"
-            closeOnItemClick
-            withArrow
-            withinPortal
-        >
-            {items}
+            </Menu.Target>
+            <Menu.Dropdown>{items}</Menu.Dropdown>
         </Menu>
     );
 };

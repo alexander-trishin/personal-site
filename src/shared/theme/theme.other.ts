@@ -1,22 +1,22 @@
 import type { MantineTheme } from '@mantine/core';
 
-type ClampOptions = {
+interface ClampOptions {
     baseFontSizeInPx?: number;
     minViewportInPx?: number;
     maxViewportInPx?: number;
-};
+}
 
 type Clamp = (minFontSizeInPx: number, maxFontSizeInPx: number, options?: ClampOptions) => string;
 type GetPrimaryColor = (theme: MantineTheme, shade?: number) => string;
 
-type ThemeOtherFn = {
+interface ThemeOtherFn {
     clamp: Clamp;
     getPrimaryColor: GetPrimaryColor;
-};
+}
 
-export type ThemeOther = {
+export interface ThemeOther {
     fn: ThemeOtherFn;
-};
+}
 
 export const clamp: Clamp = (minFontSizeInPx, maxFontSizeInPx, options) => {
     const { baseFontSizeInPx = 16, minViewportInPx = 576, maxViewportInPx = 1400 } = options ?? {};

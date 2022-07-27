@@ -5,5 +5,12 @@
 certificates
 codegen
 coverage
+prisma
 
 .pnp.*
+
+*.jpg
+*.png
+*.tsbuildinfo
+*.ico
+*.lock

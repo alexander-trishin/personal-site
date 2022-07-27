@@ -1,9 +1,15 @@
-import { Box, BoxProps, createStyles } from '@mantine/core';
-import { forwardRef, ForwardRefExoticComponent, PropsWithoutRef, RefAttributes } from 'react';
+import { Box, createStyles } from '@mantine/core';
+import {
+    ComponentProps,
+    forwardRef,
+    ForwardRefExoticComponent,
+    PropsWithoutRef,
+    RefAttributes
+} from 'react';
 
 import SectionHeader from './SectionHeader';
 
-type SectionProps = Omit<BoxProps<'section'>, 'component'>;
+type SectionProps = Omit<ComponentProps<typeof Box<'section'>>, 'component'>;
 
 type SectionComponent = ForwardRefExoticComponent<
     PropsWithoutRef<SectionProps> & RefAttributes<HTMLDivElement>

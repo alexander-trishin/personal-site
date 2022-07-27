@@ -1,16 +1,13 @@
-import { Box, BoxProps, createStyles, Text } from '@mantine/core';
-import { PropsWithoutRef } from 'react';
+import { Box, createStyles, Text } from '@mantine/core';
+import { ComponentProps, PropsWithoutRef } from 'react';
 
-import { ThemeOther } from 'client/theme';
-
-type SectionHeaderProps = BoxProps<'div'> & {
+type SectionHeaderProps = ComponentProps<typeof Box<'div'>> & {
     caption?: string;
     message?: string;
 };
 
 const useSectionHeaderStyles = createStyles(theme => {
-    const other = theme.other as ThemeOther;
-    const primaryColor = other.fn.getPrimaryColor(theme);
+    const primaryColor = theme.other.fn.getPrimaryColor(theme);
 
     return {
         text: {
@@ -20,7 +17,7 @@ const useSectionHeaderStyles = createStyles(theme => {
 
         caption: {
             fontFamily: theme.headings.fontFamily,
-            fontSize: other.fn.clamp(14, 18),
+            fontSize: theme.other.fn.clamp(14, 18),
 
             letterSpacing: 3,
             color: primaryColor,
@@ -29,7 +26,8 @@ const useSectionHeaderStyles = createStyles(theme => {
         },
 
         message: {
-            ...theme.headings.sizes.h3
+            fontSize: theme.headings.sizes.h3.fontSize,
+            lineHeight: theme.headings.sizes.h3.lineHeight
         }
     };
 });

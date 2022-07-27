@@ -29,7 +29,9 @@ const useAboutStyles = createStyles(theme => ({
     },
 
     message: {
-        ...theme.headings.sizes.h5,
+        fontSize: theme.headings.sizes.h5.fontSize,
+        lineHeight: theme.headings.sizes.h5.lineHeight,
+
         textAlign: 'center',
 
         [theme.fn.largerThan('sm')]: {
