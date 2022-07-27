@@ -1,6 +1,6 @@
-import { Theme } from './theme.types';
+import { MantineThemeOverride } from '@mantine/core';
 
-export const colors: Theme['colors'] = {
+export const colors: Required<MantineThemeOverride>['colors'] = {
     violet: [
         '#F5F3FF',
         '#EDE9FE',

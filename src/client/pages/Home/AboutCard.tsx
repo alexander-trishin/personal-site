@@ -11,7 +11,8 @@ type AboutCardProps = Omit<StackProps, 'align' | 'spacing'> & {
 const useAboutCardStyles = createStyles(theme => ({
     caption: {
         fontFamily: theme.headings.fontFamily,
-        ...theme.headings.sizes.h5
+        fontSize: theme.headings.sizes.h5.fontSize,
+        lineHeight: theme.headings.sizes.h5.lineHeight
     }
 }));
 

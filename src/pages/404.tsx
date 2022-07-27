@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { Suspense } from 'react';
 
 import { ErrorShell } from 'client/components';
-import { getMessages } from 'client/i18n';
+import { getMessages } from 'shared/i18n';
 
 const PageNotFoundImage = dynamic(() => import('client/assets/svg/PageNotFound'), {
     suspense: true

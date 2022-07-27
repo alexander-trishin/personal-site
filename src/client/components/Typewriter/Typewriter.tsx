@@ -1,11 +1,11 @@
-import { Box, BoxProps, Global } from '@mantine/core';
-import { PropsWithoutRef, useCallback, useEffect, useRef, useState } from 'react';
+import { Box, Global } from '@mantine/core';
+import { ComponentProps, PropsWithoutRef, useCallback, useEffect, useRef, useState } from 'react';
 import Typed, { TypedOptions } from 'typed.js';
 
 import { isClientSide } from 'shared/utils/dom';
 
 type TypedProps = Pick<TypedOptions, 'backDelay' | 'backSpeed' | 'startDelay' | 'typeSpeed'>;
-type TypewriterProps = Omit<BoxProps<'span'>, 'component'> & TypedProps;
+type TypewriterProps = Omit<ComponentProps<typeof Box<'span'>>, 'component'> & TypedProps;
 
 const Typewriter = (props: PropsWithoutRef<TypewriterProps>) => {
     const {

@@ -1,8 +1,23 @@
+import type { MantineThemeOverride } from '@mantine/core';
+
 import { colors } from './theme.colors';
 import { clamp, getPrimaryColor } from './theme.other';
-import { DefaultProps, Theme } from './theme.types';
 
-export const mantineTheme: Theme = {
+const components: Required<MantineThemeOverride>['components'] = {
+    Container: {
+        defaultProps: {
+            sizes: {
+                xs: 556,
+                sm: 720,
+                md: 896,
+                lg: 1120,
+                xl: 1236
+            }
+        }
+    }
+};
+
+const theme: MantineThemeOverride = {
     breakpoints: {
         xs: 576,
         sm: 768,
@@ -13,6 +28,8 @@ export const mantineTheme: Theme = {
 
     colors,
     colorScheme: 'light',
+
+    components,
 
     primaryColor: 'violet',
     primaryShade: {
@@ -63,14 +80,4 @@ export const mantineTheme: Theme = {
     }
 };
 
-export const mantineDefaultProps: DefaultProps = {
-    Container: {
-        sizes: {
-            xs: 556,
-            sm: 720,
-            md: 896,
-            lg: 1120,
-            xl: 1236
-        }
-    }
-};
+export default theme;

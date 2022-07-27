@@ -2,7 +2,6 @@ import { Box, Center, Container, createStyles, Stack, Text, Title } from '@manti
 import { ComponentProps, PropsWithChildren, ReactNode } from 'react';
 
 import { SearchEngineOptimization } from 'client/components';
-import { ThemeOther } from 'client/theme';
 
 type ErrorShellProps = Required<Pick<ComponentProps<typeof SearchEngineOptimization>, 'title'>> & {
     caption?: ReactNode;
@@ -33,7 +32,7 @@ const useErrorShellStyles = createStyles(theme => ({
     },
 
     message: {
-        fontSize: (theme.other as ThemeOther).fn.clamp(14, 18)
+        fontSize: theme.other.fn.clamp(14, 18)
     }
 }));
 

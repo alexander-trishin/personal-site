@@ -1,8 +1,8 @@
-import { Box, BoxProps, Button, Center, Container, Stack, Text } from '@mantine/core';
+import { Box, Button, Center, Container, Stack, Text } from '@mantine/core';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import Link from 'next/link';
-import { forwardRef } from 'react';
+import { ComponentProps, forwardRef } from 'react';
 import { GoChevronDown } from 'react-icons/go';
 
 import { Typewriter } from 'client/components';
@@ -11,7 +11,7 @@ import useIntroStyles from './Intro.styles';
 import Section from './Section';
 import Social from './Social';
 
-type IntroProps = Omit<BoxProps<'section'>, 'component'> & {
+type IntroProps = Omit<ComponentProps<typeof Box<'section'>>, 'component'> & {
     showMoreHref?: string;
 };
 

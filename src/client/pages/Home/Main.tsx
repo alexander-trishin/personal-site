@@ -1,9 +1,9 @@
-import { Box, BoxProps, createStyles } from '@mantine/core';
-import { PropsWithoutRef } from 'react';
+import { Box, createStyles } from '@mantine/core';
+import { ComponentProps, PropsWithoutRef } from 'react';
 
 import { HomeZIndex } from './Home.constants';
 
-type MainProps = Omit<BoxProps<'main'>, 'component'>;
+type MainProps = Omit<ComponentProps<typeof Box<'main'>>, 'component'>;
 
 const useMainStyles = createStyles(theme => ({
     root: {

@@ -1,13 +1,13 @@
-import { ActionIcon, ActionIconProps, Affix, createStyles, Transition } from '@mantine/core';
+import { ActionIcon, Affix, createStyles, Transition } from '@mantine/core';
 import { useWindowScroll } from '@mantine/hooks';
 import Link from 'next/link';
-import { PropsWithoutRef } from 'react';
+import { ComponentProps, PropsWithoutRef } from 'react';
 import { VscArrowUp } from 'react-icons/vsc';
 
 import { ZIndex } from 'client/constants';
 
 type OmitActionIconProps = 'component' | 'variant' | 'color' | 'size' | 'radius' | 'style';
-type BackToTopButtonProps = Omit<ActionIconProps<'a'>, OmitActionIconProps>;
+type BackToTopButtonProps = Omit<ComponentProps<typeof ActionIcon<'a'>>, OmitActionIconProps>;
 
 const useBackToTopButtonStyles = createStyles(theme => ({
     button: {

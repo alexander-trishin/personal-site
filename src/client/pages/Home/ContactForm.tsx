@@ -1,7 +1,7 @@
-import { Box, BoxProps, Button, Textarea, TextInput, TextInputProps } from '@mantine/core';
+import { Box, Button, Textarea, TextInput, TextInputProps } from '@mantine/core';
 import { useForm, zodResolver } from '@mantine/form';
 import { useTranslations } from 'next-intl';
-import { PropsWithoutRef } from 'react';
+import { ComponentProps, PropsWithoutRef } from 'react';
 import { z } from 'zod';
 
 import { useFormTranslationFix } from 'client/hooks';
@@ -9,7 +9,8 @@ import { trim } from 'shared/utils/string';
 
 import { ContactData, ContactFormBaseProps } from './Contact.types';
 
-type ContactFormProps = Omit<BoxProps<'form'>, 'component' | 'onSubmit'> & ContactFormBaseProps;
+type ContactFormProps = Omit<ComponentProps<typeof Box<'form'>>, 'component' | 'onSubmit'> &
+    ContactFormBaseProps;
 
 const useContactFormSchema = () => {
     const t = useTranslations('validation');
@@ -73,16 +74,16 @@ const ContactForm = (props: PropsWithoutRef<ContactFormProps>) => {
     const { isSubmitting: isLoading, onSubmit, ...rest } = props;
 
     const t = useTranslations('home-contact-form');
-    const [schema, tv] = useContactFormSchema();
+    const [validate, tv] = useContactFormSchema();
 
     const form = useForm<ContactData>({
-        schema,
         initialValues: {
             name: '',
             email: '',
             subject: '',
             message: ''
-        }
+        },
+        validate
     });
 
     useFormTranslationFix(form, tv);
