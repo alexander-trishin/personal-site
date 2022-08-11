@@ -7,7 +7,7 @@ type SectionHeaderProps = ComponentProps<typeof Box<'div'>> & {
 };
 
 const useSectionHeaderStyles = createStyles(theme => {
-    const primaryColor = theme.other.fn.getPrimaryColor(theme);
+    const primaryColor = theme.fn.primaryColor();
 
     return {
         text: {
