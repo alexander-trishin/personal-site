@@ -17,7 +17,7 @@ const UmamiAnalytics = () => {
         if (a) {
             const { href, textContent, title } = a;
 
-            umami?.trackEvent(title ?? textContent ?? href, event.type);
+            umami?.trackEvent('Anchor click', { href, textContent, title });
             return;
         }
 
@@ -26,7 +26,7 @@ const UmamiAnalytics = () => {
         if (button) {
             const { id, name, textContent, title } = button;
 
-            umami?.trackEvent(title ?? textContent ?? name ?? id, event.type);
+            umami?.trackEvent('Button click', { id, name, textContent, title });
             return;
         }
     });

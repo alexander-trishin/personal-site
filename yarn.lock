@@ -2038,13 +2038,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/umami@npm:0.1.0":
-  version: 0.1.0
-  resolution: "@types/umami@npm:0.1.0"
-  checksum: 36e3e90c89ce691d78545f95ab0d55b2906183488fd1cfe83d2888ed35652098934848ba15a298f0f37292a95a244f8a2b03c4a09f1de08715203de6bb1d6710
-  languageName: node
-  linkType: hard
-
 "@types/yargs-parser@npm:*":
   version: 21.0.0
   resolution: "@types/yargs-parser@npm:21.0.0"
@@ -7042,7 +7035,6 @@ __metadata:
     "@types/sharp": 0.30.4
     "@types/testing-library__jest-dom": 5.14.5
     "@types/typed.js": 2.0.9
-    "@types/umami": 0.1.0
     "@yarnpkg/pnpify": 4.0.0-rc.14
     aos: 2.3.4
     bcrypt: 5.0.1
