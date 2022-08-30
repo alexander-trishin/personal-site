@@ -5,7 +5,7 @@ import { HomeZIndex } from './Home.constants';
 const useIntroStyles = createStyles(theme => {
     const darkMode = theme.colorScheme === 'dark';
 
-    const primaryColor = theme.other.fn.getPrimaryColor(theme);
+    const primaryColor = theme.fn.primaryColor();
     const socialSize = theme.other.fn.clamp(26, 32);
 
     return {

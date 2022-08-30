@@ -1,7 +1,7 @@
 import type { MantineThemeOverride } from '@mantine/core';
 
 import { colors } from './theme.colors';
-import { clamp, getPrimaryColor } from './theme.other';
+import { clamp } from './theme.other';
 
 const components: Required<MantineThemeOverride>['components'] = {
     Container: {
@@ -74,8 +74,7 @@ const theme: MantineThemeOverride = {
 
     other: {
         fn: {
-            clamp,
-            getPrimaryColor
+            clamp
         }
     }
 };

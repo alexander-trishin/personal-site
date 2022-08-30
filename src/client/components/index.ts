@@ -7,4 +7,5 @@ export { LanguagePicker } from './LanguagePicker';
 export { ErrorShell } from './Layout';
 export { Logo } from './Logo';
 export { PasswordField } from './PasswordField';
+export { RouterNavigationProgress } from './RouterNavigationProgress';
 export { Typewriter } from './Typewriter';

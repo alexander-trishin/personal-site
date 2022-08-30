@@ -1,5 +1,3 @@
-import type { MantineTheme } from '@mantine/core';
-
 interface ClampOptions {
     baseFontSizeInPx?: number;
     minViewportInPx?: number;
@@ -7,11 +5,9 @@ interface ClampOptions {
 }
 
 type Clamp = (minFontSizeInPx: number, maxFontSizeInPx: number, options?: ClampOptions) => string;
-type GetPrimaryColor = (theme: MantineTheme, shade?: number) => string;
 
 interface ThemeOtherFn {
     clamp: Clamp;
-    getPrimaryColor: GetPrimaryColor;
 }
 
 export interface ThemeOther {
@@ -29,15 +25,4 @@ export const clamp: Clamp = (minFontSizeInPx, maxFontSizeInPx, options) => {
     const calc = `${minFontSizeInRem}rem + (${fontDifferenceInPx}) * ((100vw - ${minViewportInPx}px) / (${viewportDifferenceInPx}))`;
 
     return `clamp(${minFontSizeInPx}px, calc(${calc}), ${maxFontSizeInPx}px)`;
-};
-
-export const getPrimaryColor = (theme: MantineTheme, shade?: number) => {
-    const primaryShade =
-        typeof shade === 'number'
-            ? shade
-            : typeof theme.primaryShade === 'object'
-            ? theme.primaryShade[theme.colorScheme]
-            : theme.primaryShade;
-
-    return theme.colors[theme.primaryColor][primaryShade];
 };
