@@ -139,11 +139,7 @@ const Header = (props: PropsWithoutRef<HeaderProps>) => {
 
                         <Group spacing="md" ml="xl">
                             <LanguagePicker />
-                            <ColorSchemeToggle
-                                variant="default"
-                                size={30}
-                                onClick={onThemeToggle}
-                            />
+                            <ColorSchemeToggle onClick={onThemeToggle} />
                         </Group>
                     </Group>
                 </Group>
@@ -152,7 +148,7 @@ const Header = (props: PropsWithoutRef<HeaderProps>) => {
             {isMobile && (
                 <Transition mounted={isSidebarOpen} transition="slide-right" duration={300}>
                     {styles => (
-                        <Paper withBorder className={classes.sidebar} style={styles}>
+                        <Paper radius={0} withBorder className={classes.sidebar} style={styles}>
                             <Stack p="lg">{links}</Stack>
                         </Paper>
                     )}

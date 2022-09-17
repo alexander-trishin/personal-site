@@ -22,7 +22,7 @@ const BackToTopButton = (props: PropsWithoutRef<BackToTopButtonProps>) => {
     const [scroll] = useWindowScroll();
 
     return (
-        <Affix zIndex={ZIndex.BackToTop} position={{ bottom: 20, right: 20 }}>
+        <Affix zIndex={ZIndex.BackToTop} position={{ bottom: 20, right: 20 }} withinPortal>
             <Transition transition="slide-up" mounted={scroll.y > 300}>
                 {styles => (
                     <Link href={href} shallow replace passHref>
