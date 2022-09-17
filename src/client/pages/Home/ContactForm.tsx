@@ -1,7 +1,7 @@
-import { Box, Button, Textarea, TextInput, TextInputProps } from '@mantine/core';
+import { Button, Textarea, TextInput, TextInputProps } from '@mantine/core';
 import { useForm, zodResolver } from '@mantine/form';
 import { useTranslations } from 'next-intl';
-import { ComponentProps, PropsWithoutRef } from 'react';
+import { FormHTMLAttributes, PropsWithoutRef } from 'react';
 import { z } from 'zod';
 
 import { useFormTranslationFix } from 'client/hooks';
@@ -9,7 +9,7 @@ import { trim } from 'shared/utils/string';
 
 import { ContactData, ContactFormBaseProps } from './Contact.types';
 
-type ContactFormProps = Omit<ComponentProps<typeof Box<'form'>>, 'component' | 'onSubmit'> &
+type ContactFormProps = Omit<FormHTMLAttributes<HTMLFormElement>, 'onSubmit'> &
     ContactFormBaseProps;
 
 const useContactFormSchema = () => {
@@ -107,7 +107,7 @@ const ContactForm = (props: PropsWithoutRef<ContactFormProps>) => {
     });
 
     return (
-        <Box {...rest} component="form" onSubmit={handleSubmit}>
+        <form {...rest} onSubmit={handleSubmit}>
             <TextInput
                 {...form.getInputProps('name')}
                 styles={inputStyles}
@@ -161,7 +161,7 @@ const ContactForm = (props: PropsWithoutRef<ContactFormProps>) => {
             >
                 {t('submit')}
             </Button>
-        </Box>
+        </form>
     );
 };
 

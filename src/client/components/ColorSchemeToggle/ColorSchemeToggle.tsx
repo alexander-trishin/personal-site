@@ -19,7 +19,7 @@ const ColorSchemeToggle = (props: PropsWithoutRef<ColorSchemeToggleProps>) => {
     const { colorScheme, toggleColorScheme } = useMantineColorScheme();
     const { classes, cx, theme } = useColorSchemeToggleStyles();
 
-    const isMobile = useMediaQuery(`(max-width: ${theme.breakpoints.sm}px)`);
+    const isMobile = useMediaQuery(`(max-width: ${theme.breakpoints.sm}px)`, false);
     const t = useTranslations('shared');
 
     const Icon = colorScheme === 'dark' ? BiSun : BiMoon;
@@ -33,7 +33,13 @@ const ColorSchemeToggle = (props: PropsWithoutRef<ColorSchemeToggleProps>) => {
 
     return (
         <Tooltip disabled={isMobile} label={tooltip} withArrow openDelay={200}>
-            <ActionIcon {...rest} className={cx(classes.root, className)} onClick={handleClick}>
+            <ActionIcon
+                variant="default"
+                size={30}
+                {...rest}
+                className={cx(classes.root, className)}
+                onClick={handleClick}
+            >
                 <Icon size="75%" />
             </ActionIcon>
         </Tooltip>
