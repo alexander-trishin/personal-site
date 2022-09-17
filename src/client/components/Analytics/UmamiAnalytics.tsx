@@ -2,6 +2,19 @@ import { useWindowEvent } from '@mantine/hooks';
 import Script from 'next/script';
 import { useRef } from 'react';
 
+const getEventData = (element: HTMLAnchorElement | HTMLButtonElement) => {
+    const { id, innerText, name, textContent, title } = element;
+
+    const text = textContent || innerText;
+
+    return {
+        ...(id && { id }),
+        ...(name && { name }),
+        ...(text && { text }),
+        ...(title && { title })
+    };
+};
+
 const UmamiAnalytics = () => {
     const prodRef = useRef(process.env.NODE_ENV === 'production');
 
@@ -15,18 +28,16 @@ const UmamiAnalytics = () => {
         const a = target.closest('a');
 
         if (a) {
-            const { href, textContent, title } = a;
+            const { href } = a;
 
-            umami?.trackEvent('Anchor click', { href, textContent, title });
+            umami?.trackEvent('Anchor click', { href, ...getEventData(a) });
             return;
         }
 
         const button = target.closest('button');
 
         if (button) {
-            const { id, name, textContent, title } = button;
-
-            umami?.trackEvent('Button click', { id, name, textContent, title });
+            umami?.trackEvent('Button click', getEventData(button));
             return;
         }
     });
