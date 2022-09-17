@@ -2,10 +2,10 @@
 
 My personal website. Built using:
 
-- [Typescript 4.7](https://www.typescriptlang.org/)
-- [Next.js 12.2](https://nextjs.org/)
-- [React.js 18](https://reactjs.org/)
-- [Mantine 5](https://mantine.dev/)
+- [Typescript 4.8](https://www.typescriptlang.org/)
+- [Next.js 12.3](https://nextjs.org/)
+- [React.js 18.2](https://reactjs.org/)
+- [Mantine 5.3](https://mantine.dev/)
 
 ## Getting started
 
